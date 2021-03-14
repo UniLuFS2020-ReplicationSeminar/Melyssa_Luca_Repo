@@ -236,7 +236,7 @@ Create the two plots and then self-learn how to combine them into one plot using
 
 ```{r, results = 'asis'}
 
-# creating 3 regression models
+# creating regression models
 ## fit 1
 fit1 <- lm(formula = y ~ x1, 
            data = df_1)
@@ -330,4 +330,27 @@ In this exercise we try to replicate a recent scientific study published on a hi
 3. As you will note, the study uses different data files, start with the first one (i.e., ESS) and start up the first model in the table and the first predicted probability plot. Then, if the time allows, proceed with the other files (i.e., GESIS, then BHPS, then Qualtrics).  
 
 A good replication is an active and extended replication: do you see any strange modification of the code? What happens if you change an assumption? Good luck!
+
+
+```{r}
+# improt the ESS-data with rio()
+ESS <- rio::import("Data/ESS_data.dta")
+
+# taking a look
+View(ESS)
+
+# trying to replicate the table 3
+voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
+                     data = ESS)
+
+
+
+political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
+                     data = ESS)
+
+```
+
+
+
+
 
