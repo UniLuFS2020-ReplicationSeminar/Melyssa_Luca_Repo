@@ -237,12 +237,21 @@ Create the two plots and then self-learn how to combine them into one plot using
 ```{r, results = 'asis'}
 
 # creating 3 regression models
+## fit 1
 fit1 <- lm(formula = y ~ x1, 
            data = df_1)
+coef(fit1)
+
+## fit 2
 fit2 <- lm(formula = y ~ x2, 
            data = df_1)
+coef(fit2)
+
+## fit3
 fit3 <- lm(formula = y ~ x1 + x2, 
            data = df_1)
+coef(fit3)
+
 
 # creating a regression table with stargazer::stargazer() and saving it as html-file. Somehow the table could not be displayed correctly in markdown.... 
 stargazer::stargazer(fit1, fit2, fit3,
@@ -252,13 +261,18 @@ stargazer::stargazer(fit1, fit2, fit3,
 
 summary(fit3)
 # predicting the values with sjPlot::plot_model()
-sjPlot::plot_model(fit3,
+p1 <- sjPlot::plot_model(fit3,
                    type = "pred",
                    terms = "x1")
 
-sjPlot::plot_model(fit3,
+p2 <- sjPlot::plot_model(fit3,
                    type = "pred",
                    terms = "x2")
+
+# combining the 2 plots with patchwork
+# install.packages("patchwork")
+library(patchwork)
+p1 / p2
 ```
 
 ### Exercise 1.3
