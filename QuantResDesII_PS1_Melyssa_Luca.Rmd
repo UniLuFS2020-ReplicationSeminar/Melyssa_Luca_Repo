@@ -283,13 +283,39 @@ Comment the estimated coefficients from the three models.
 3. Finally, compare the effect of `x1` and the effect of `x2`: which one is stronger?  
 4. What is the predicted value of `y` when `x1 = 20` and `x2 = 0`?
 
-Point 1.  
+#### 1)
+extract the coefficients with coef()
+```{r}
+coef(fit1)
+coef(fit2)
+coef(fit3)
+```
 
-Point 2.  
+**fit1**
+assumed: y = -10 + 0.1 * x1
+estimated: y = -29.97 + 0.099 * x1 + e
 
-Point 3. 
+**fit2**
+assumed: y = -10 + 2 * x2
+estimated: y = -9.47 + 2.05 * x2 + e
 
-Point 4. 
+**fit3**
+assumed: y = -10 + 0.1 * x1 + 2 * x2
+estimated: y = -10.20 + 0.10 * x1 + 1.98 * x2 + e
+
+#### 2)
+
+
+#### 3)
+The effect on x2 is stronger (b1 = 0.10 vs. b2 = 1.98)
+
+#### 4)
+```{r}
+-10.20 + 0.10 * 20 + 1.98 * 0
+```
+
+-> estimated y = -8.2
+
 
 
 # Exercise 2: replication
