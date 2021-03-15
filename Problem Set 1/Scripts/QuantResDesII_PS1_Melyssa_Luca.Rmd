@@ -259,7 +259,6 @@ stargazer::stargazer(fit1, fit2, fit3,
                      style = "apsr",
                      out = "table1.html")
 
-summary(fit3)
 # predicting the values with sjPlot::plot_model()
 p1 <- sjPlot::plot_model(fit3,
                    type = "pred",
@@ -280,7 +279,7 @@ p1 / p2
 Comment the estimated coefficients from the three models.  
 1. How do they compare with the assumed parameters?  
 2. How does the interpretation of `b1` change between model 1 and model 3?  
-3. Finally, compare the effect of `x1` and the effect of `x2`: which one is stronger?  
+3. Finally, compare the effect of `x1` and the effect of `x2`: which one is stronger?
 4. What is the predicted value of `y` when `x1 = 20` and `x2 = 0`?
 
 #### 1)
