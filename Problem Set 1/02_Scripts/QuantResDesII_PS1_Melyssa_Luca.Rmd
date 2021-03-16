@@ -263,10 +263,12 @@ stargazer::stargazer(fit1, fit2, fit3,
 p1 <- sjPlot::plot_model(fit3,
                    type = "pred",
                    terms = "x1")
+p1
 
 p2 <- sjPlot::plot_model(fit3,
                    type = "pred",
                    terms = "x2")
+p2
 
 # combining the 2 plots with patchwork
 # install.packages("patchwork")
@@ -303,17 +305,23 @@ assumed: y = -10 + 0.1 * x1 + 2 * x2
 estimated: y = -10.20 + 0.10 * x1 + 1.98 * x2 + e
 
 #### 2)
-
+In model 3 we have 2 independent variables. The interpretation is made under the assumption that the other variables in the model do not change (ceteris paribus).
 
 #### 3)
 The effect on x2 is stronger (b1 = 0.10 vs. b2 = 1.98)
 
 #### 4)
 ```{r}
+# use R as an calculator
 -10.20 + 0.10 * 20 + 1.98 * 0
+
+# predict()
+predict(object = fit3, 
+        newdata = tibble(x1 = 20, 
+                         x2 = 0))
 ```
 
--> estimated y = -8.2
+
 
 
 
@@ -332,22 +340,49 @@ A good replication is an active and extended replication: do you see any strange
 
 
 ```{r}
-# improt the ESS-data with rio()
-ESS <- rio::import("Data/ESS_data.dta")
+# import the ESS-data set with rio() -> somehow i am not able to change the working directory...
+# so i had to import it with the "mouse"-.-
+library(haven)
+## set working directory
+ESS_data <- read_dta("01_Data/ESS_data.dta")
+
+# Solution to the problem above
+library(rio)
+
+ESS_data_1 <- import(file = here::here("Problem Set 1", "01_Data", "ESS_data.dta"))
 
 # taking a look
-View(ESS)
+View(ESS_data_1)
+summary(ESS_data_1)
 
 # trying to replicate the table 3
-voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
-                     data = ESS)
+## "logit vote depression" -> glm()
+voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
+                     data = ESS_data_1)
+
+## "reg motivation depression" -> lm()
+political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
+                     data = ESS_data_1)
 
 
+# regression tables with summary()
+summary(voter_turnout)
+summary(political_motivation)
 
-political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
-                     data = ESS)
+# Just the estimated coefficient and standard error for depressive symptoms -> how?
+stargazer::stargazer()
+
+
+# trying to replicate figure 2
+figure2_1 <- sjPlot::plot_model(voter_turnout,
+                   type = "pred",
+                   terms = "depression",
+                   title = "Figure 2. Predicted Probability of Voting Across Depressive Sympotms",
+                   axis.lim = c(0,1))
+figure2_1
 
 ```
+
 
 
 
