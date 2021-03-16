@@ -351,16 +351,24 @@ ESS_data <- read_dta("01_Data/ESS_data.dta")
 
 # taking a look
 View(ESS_data)
-table(is.na(ESS_data))
+summary(ESS_data)
 
 # trying to replicate the table 3
-voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
+## "logit vote depression" -> glm()
+voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
+                     data = ESS_data)
+
+## "reg motivation depression" -> lm()
+political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
                      data = ESS_data)
 
 
+# regression tables with summary()
+summary(voter_turnout)
+summary(political_motivation)
 
-political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000,
-                     data = ESS_data)
+# Just the estimated coefficient and standard error for depressive symptoms -> how?
+stargazer::stargazer()
 ```
 
 
