@@ -341,26 +341,28 @@ A good replication is an active and extended replication: do you see any strange
 
 ```{r}
 # import the ESS-data set with rio() -> somehow i am not able to change the working directory...
-ESS <- rio::rio("")
-
-
 # so i had to import it with the "mouse"-.-
 library(haven)
 ## set working directory
 ESS_data <- read_dta("01_Data/ESS_data.dta")
 
+# Solution to the problem above
+library(rio)
+
+ESS_data_1 <- import(file = here::here("Problem Set 1", "01_Data", "ESS_data.dta"))
+
 # taking a look
-View(ESS_data)
-summary(ESS_data)
+View(ESS_data_1)
+summary(ESS_data_1)
 
 # trying to replicate the table 3
 ## "logit vote depression" -> glm()
 voter_turnout <- glm(formula = vote ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
-                     data = ESS_data)
+                     data = ESS_data_1)
 
 ## "reg motivation depression" -> lm()
 political_motivation <- lm(formula = motivation ~ depression + gndr + agea + eduyrs2 + income + health + rlgblg + married + union_ever + unemploy + dispro_ess + gdppc_ess1000 + gini_ess1000 + unemploy_ess1000 + wave,
-                     data = ESS_data)
+                     data = ESS_data_1)
 
 
 # regression tables with summary()
