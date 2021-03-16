@@ -344,7 +344,7 @@ A good replication is an active and extended replication: do you see any strange
 ESS <- rio::rio("")
 
 
-# So i had to import it with the "mouse"-.-
+# so i had to import it with the "mouse"-.-
 library(haven)
 ## set working directory
 ESS_data <- read_dta("01_Data/ESS_data.dta")
@@ -369,6 +369,16 @@ summary(political_motivation)
 
 # Just the estimated coefficient and standard error for depressive symptoms -> how?
 stargazer::stargazer()
+
+
+# trying to replicate figure 2
+figure2_1 <- sjPlot::plot_model(voter_turnout,
+                   type = "pred",
+                   terms = "depression",
+                   title = "Figure 2. Predicted Probability of Voting Across Depressive Sympotms",
+                   axis.lim = c(0,1))
+figure2_1
+
 ```
 
 
