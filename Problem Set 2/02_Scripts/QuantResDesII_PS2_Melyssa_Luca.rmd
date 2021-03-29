@@ -196,6 +196,68 @@ A good replication is an active and extended replication: do you see any strange
 
 
 ```{r}
+# check working directory
+getwd()
 
+# import the data with rio and here::here()
+library(rio)
+ap_data <- import(file = here::here("Problem Set 2", "01_Data", "Aff. Pol. Exp. Data.dta"))
+
+# take a look
+View(ap_data)
+summary(ap_data)
+names(ap_data)
+
+
+# document -> "Computing Figure 1" -> let's see if this works....
+# load the data
+covid <- read.table(file = here::here("Problem Set 2", "01_Data", "expresults from Stata to generate Figure 1.txt"), header = TRUE)
+
+# just copy & paste?
+outgroup=seq(0,1,by=.05)
+
+par(mfrow=c(1,2),oma=c(6,5,2,1),mar=c(1,2,1,1))
+
+plot(outgroup,covid$dem[1:21], ylim=c(1,4), ylab=" ",xlab=" ",axes=F,type="n")
+polygon(c(outgroup,rev(outgroup)),c(covid$dem.ub[1:21],rev(covid$dem.lb[1:21])),col="grey80",border="NA")
+polygon(c(outgroup,rev(outgroup)),c(covid$dem.ub[22:42],rev(covid$dem.lb[22:42])),col="grey80",border="NA")
+
+lines(outgroup,covid$dem[1:21],lwd=2,col="black",lty=2)
+lines(outgroup,covid$dem[22:42],lwd=2,col="black")
+
+axis(1,at = seq(0,1,.2), label = seq(0,1,.2), mgp = c(.8,2,1), cex.axis=1.75)
+axis(2,at = seq(1,4,1), label = seq(1,4,1), mgp = c(.8,2,1), cex.axis=1.75,las=2)
+
+mtext("Democrats",side=3,line=0,cex=2.2,outer=F)
+
+text(0,1.90,"1.96",cex=1.3)
+text(0,2.48,"2.42",cex=1.3)
+
+text(1,0.99,"1.05",cex=1.3)
+text(1,1.24,"1.16",cex=1.3)
+
+legend(0,3.5,legend=c("Trump Treatment","USA Treatment"),lwd=3,lty=c(2,1),cex=2,bty="n",horiz=F)
+
+plot(outgroup,covid$rep[1:21], ylim=c(1,4), ylab=" ",xlab=" ",axes=F,type="n")
+polygon(c(outgroup,rev(outgroup)),c(covid$rep.ub[1:21],rev(covid$rep.lb[1:21])),col="grey80",border="NA")
+polygon(c(outgroup,rev(outgroup)),c(covid$rep.ub[22:42],rev(covid$rep.lb[22:42])),col="grey80",border="NA")
+
+lines(outgroup,covid$rep[1:21],lwd=3,col="black",lty=2)
+lines(outgroup,covid$rep[22:42],lwd=3,col="black",lty=1)
+
+axis(1,at = seq(0,1,.2), label = seq(0,1,.2), mgp = c(.8,2,1), cex.axis=1.75)
+axis(2,at = seq(1,4,1), label = rep(" ",times=4), mgp = c(.8,2,1), cex.axis=1.75,las=2)
+
+mtext("Republicans",side=3,line=0,cex=2.2,outer=F)
+
+text(0,2.02,"1.94",cex=1.3)
+text(0,1.25,"1.31",cex=1.3)
+
+text(1,3.20,"3.14",cex=1.3)
+text(1,2.97,"3.11",cex=1.3)
+
+mtext("Affective Polarization",side=1,line=3,cex=2.2,outer=T)
+mtext("Predicted Evaluation",side=2,line=2,cex=2.2,outer=T)
+# worked!
 ```
 
