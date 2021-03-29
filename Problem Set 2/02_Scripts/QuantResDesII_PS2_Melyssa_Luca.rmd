@@ -288,5 +288,16 @@ ap_data$expUS
 ap_data$exptrump
 # so far so good!
 
+
+# create variable expdv
+# egen expdv = rowmean(expconf flipexpprep flipexpfuture)
+
+# create flipexpprep and flipexpfuture first!
+ap_data <- ap_data %>% 
+  mutate(
+    flipexpprep = 5 - expprep,
+    flipexpfuture = 5 - expfuture
+  )
+
 ```
 
