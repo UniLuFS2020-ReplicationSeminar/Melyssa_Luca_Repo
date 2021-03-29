@@ -194,3 +194,8 @@ This week we replicate a juicy new experimental paper published on the Journal o
 **Tip**.
 A good replication is an active and extended replication: do you see any strange modification of the code? What happens if you change an assumption? Good luck!
 
+
+```{r}
+
+```
+
