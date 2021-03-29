@@ -48,8 +48,8 @@ In this first exercise you are going to create simulated data in a scenario wher
 Generate a data set named `df` following these instructions: 
 
 1. Consider `N = 5000` observations and set the seed to `24032021`.  
-2. Generate **three exogenous variables**. `y0` is the potential outcome representing $y_i|D=0$. You may see this as e.g., the health status given that the individuals decide not to get an insurance. Simulate the quantity drawing the values from a normal distribution with mean `0` and standard deviation `1`. Next, generate random treatment assignment created with a coin toss. You can simulate coin tosses using a random binomial distribution: `rbinom(n, size, prob)`. Self-learn the function to generate the random treatment assignment with values `0` (= no insurance) and `1` (= insurance), and a probability of `0.5`.  Finally, create a random error term `e` that is normally distributed with mean = `0` and standard deviation `1/5`. 
-3. At this point generate the endogenous variable `y1`: this is the potential outcome $y_i|D=1$. Create the variable self-learning the conditional assignment function `ifelse(test, yes, no)`: if the treatment is `D=0`, then `y1` is equal to the baseline health status under potential outcome with no treatment (`y0`), plus the error term; if the treatment is `D=1`, then `y1` is equal to the baseline potential health with no insurance, plus a constant treatment effect of 0.5, plus the error term. 
+2. Generate **three exogenous variables**. `y0` is the potential outcome representing $y_i|D=0$. You may see this as e.g., the health status given that the individuals decide not to get an insurance. Simulate the quantity drawing the values from a normal distribution with mean `0` and standard deviation `1`. Next, generate random created with a coin toss. You can simulate coin tosses using a random binomial distribution: `rbinom(n, size, prob)`. Self-learn the function to generate the random treatment assignment with values `0` (= no insurance) and `1` (= insurance), and a probability of `0.5`.  Finally, create a random error term `e` that is normally distributed with mean = `0` and standard deviation `1/5`. 
+3. At this point `y1`: this is the potential outcome $Y_i | D == 0$. Create the variable self-learning the conditional assignment function `ifelse(test, yes, no)`: if the treatment is `D=0`, then `y1` is equal to the baseline health status under potential outcome with no treatment (`y0`), plus the error term; if the treatment is `D=1`, then `y1` is equal to the baseline potential health with no insurance, plus a constant treatment effect of 0.5, plus the error term. 
 
 
 ```{r}
@@ -65,7 +65,7 @@ Using the simulated data, estimate a linear regression model showing that there 
 
 ## Exercise 1.3
 
-Always using the generate data, compute the observed health status `y` using the appropriate values of the potential outcomes. Add the variable to the `df` data. State in one line which variables you would observe in a standard data analysis and which you would not observe (i.e., they are only observed using simulations). 
+Always using the generate data, compute the observed health status `y` using the appropriate values of the potential outcomes. Add the variable to the `df` data. (i.e., they are only observed using simulations). 
 
 ```{r}
 
