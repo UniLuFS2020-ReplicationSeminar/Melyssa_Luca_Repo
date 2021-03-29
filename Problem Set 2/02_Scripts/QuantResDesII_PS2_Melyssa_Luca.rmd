@@ -135,7 +135,10 @@ Using the simulated data, estimate a linear regression model showing that there 
 Interpret the result in one line. 
 
 ```{r}
+summary(lm(formula = y1 ~ d, data = dfsb))
 
+# if a person gets the treatment, the potential outcome increases by ~1.29. 
+# This is not at all equal to the defined treatment effect -> selection bias
 ```
 
 ## Exercise 2.3
