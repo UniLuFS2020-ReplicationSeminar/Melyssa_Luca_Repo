@@ -299,5 +299,24 @@ ap_data <- ap_data %>%
     flipexpfuture = 5 - expfuture
   )
 
+# expdv
+
+ap_data <- ap_data %>% 
+  mutate(
+    expdv = rowMeans(select(ap_data, expconf, flipexpprep, flipexpfuture))
+  )
+
+# first model fit
+model_1 <- lm(expdv ~ expUS, data = filter(ap_data, dem == 1))
+summary(model_1)
+stargazer::stargazer(model_1, type = "html",
+                     out = "model_1.html")
+
+
+# second model fit
+model_2 <- lm(expdv ~ expUS, data = filter(ap_data, rep == 1))
+summary(model_2)
+stargazer::stargazer(model_2, type = "html",
+                     out = "model_2.html")
 ```
 
