@@ -150,7 +150,31 @@ Conclude writing and showing their equivalence.
 
 
 ```{r}
+# generate y
+dfsb <- dfsb %>% 
+  mutate(
+    y = ifelse(test = d == 1,
+               yes = y1,
+               no = y0)
+  )
 
+# create subsets
+treatment_sb <- dfsb %>% 
+  filter(d == 1)
+
+control_sb <- dfsb %>% 
+  filter(d != 1)
+
+#1 observed average difference between the groups = "treatment effect"
+mean(treatment_sb$y) - mean(control_sb$y) # 1.297935
+
+#2 average treatment effect on the treated
+mean(treatment_sb$y1) - mean(treatment_sb$y0) # 0.4980165
+
+#3 selection bias = E(y0i|D = 1) - E(Y0i|D = 0)
+mean(treatment_sb$y0) - mean(control_sb$y0) # 0.7999189
+
+# Note: avg treatment on the treated + selection bias = treatment effect
 ```
 
 
