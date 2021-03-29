@@ -104,7 +104,29 @@ Generate a data set named `dfsb` following these instructions:
 
 
 ```{r}
+# set seed
+set.seed(24032021)
 
+# generate the data
+
+# exogenous variables
+dfsb <- tibble(
+  z = rnorm(n = 5000, mean = 0, sd = 1),     # omitted variable (including selection bias)
+  e = rnorm(n = 5000, mean = 0, sd = (1/5))
+)
+
+# endogenous variables
+dfsb <- dfsb %>% 
+  mutate(
+    y0 = e + (0.5 * z),
+    D = 0.5 * z,
+    d = ifelse(test = D < mean(D),           
+               yes = 0,
+               no = 1),
+    y1 = ifelse(test = d == 0,
+                yes = y0 + e,
+                no = y0 + 0.5 + e)
+  )
 ```
 
 ## Exercise 2.2
