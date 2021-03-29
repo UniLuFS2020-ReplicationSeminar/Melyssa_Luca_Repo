@@ -1,0 +1,322 @@
+
+---
+title: "Problem Set 2"
+author: 
+- name: Melyssa
+- name: Luca
+- name: Author Three
+date: "24 March 2021"
+output:
+  html_document:
+    highlight: tango
+    theme: cosmo
+    toc: yes
+    toc_depth: 2
+    toc_float:
+      collapsed: false
+    df_print: paged
+---
+
+```{r, include=FALSE}
+# Keep this setup code chunk also in your problem set.
+# Also, use this line to load the packages that are needed
+library(tidyverse)
+library(kableExtra)
+library(DiagrammeR)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
+```
+
+
+# Learning goals
+
+- Clarifying the logic of potential outcomes
+- Understanding the set up of randomized controlled trials
+- Practicing the analysis of experimental data
+
+# Part 1: potential outcomes and experiments
+
+We simulate a simple scenario where we are interested in studying the effect of `D` on `Y`. 
+The dependent variable $Y_i$ is what we observe, but we also simulate the potential outcomes' quantities $Y_{0i} = Y_i | D == 0$ and  $Y_{1i} = Y_i | D == 1$. 
+As in the previous PS, remember that exogenous quantities are generated via random drams from assumed distributions, e.g. `x = rnorm(n=1000, mean = 0, sd = 1)`, while endogenmous variables depend on the values of otehr quantities and therefore are generated inside a `mutate()` call. 
+
+## Exercise 1: No selection bias
+
+In this first exercise you are going to create simulated data in a scenario where we have **no selection bias**. 
+
+## Exercise 1.1
+
+Generate a data set named `df` following these instructions: 
+
+1. Consider `N = 5000` observations and set the seed to `24032021`.  
+2. Generate **three exogenous variables**. `y0` is the potential outcome representing $y_i|D=0$. You may see this as e.g., the health status given that the individuals decide not to get an insurance. Simulate the quantity drawing the values from a normal distribution with mean `0` and standard deviation `1`. Next, generate random treatment assignment created with a coin toss. You can simulate coin tosses using a random binomial distribution: `rbinom(n, size, prob)`. Self-learn the function to generate the random treatment assignment with values `0` (= no insurance) and `1` (= insurance), and a probability of `0.5`.  Finally, create a random error term `e` that is normally distributed with mean = `0` and standard deviation `1/5`. 
+3. At this point generate the endogenous variable `y1`: this is the potential outcome $y_i|D=1$. Create the variable self-learning the conditional assignment function `ifelse(test, yes, no)`: if the treatment is `D=0`, then `y1` is equal to the baseline health status under potential outcome with no treatment (`y0`), plus the error term; if the treatment is `D=1`, then `y1` is equal to the baseline potential health with no insurance, plus a constant treatment effect of 0.5, plus the error term. 
+
+
+```{r}
+
+```
+## Exercise 1.2
+
+Using the simulated data, estimate a linear regression model showing that there is no selection bias. Avoid `stargazer`, just quickly execute `summary(lm(.))`. 
+
+```{r}
+
+```
+
+## Exercise 1.3
+
+Always using the generate data, compute the observed health status `y` using the appropriate values of the potential outcomes. Add the variable to the `df` data. State in one line which variables you would observe in a standard data analysis and which you would not observe (i.e., they are only observed using simulations). 
+
+```{r}
+
+```
+
+## Exercise 1.4
+
+Use the simple `mean()` function to compute the observed average difference between the treatment and control group. 
+Is this close to the average treatment effect (`0.5`)? Why? Compare the mean with the coefficient from linear regression model.
+
+```{r}
+
+```
+
+## Exercise 1.5
+
+Finally, also compute the average treatment effect on the treated and the selection bias. 
+
+```{r}
+
+```
+
+
+## Exercise 2: Selection bias
+
+In this first exercise we simulate data in a scenario where we **have selection bias**. 
+Note that the data generating process is going to be quite different. 
+
+## Exercise 2.1
+
+Generate a data set named `dfsb` following these instructions: 
+
+1. Consider `N = 5000` observations and set the seed to `24032021`.  
+2. Generate **two exogenous variables**. `z` is a confounder (omitted variable) inducing selection bias. You can think of this like some latent quantity affecting the underlying health and the decision to take the treatment. For instance, the family background (e.g., higher social class correlates with better health and higher probability to get insured). Generate `z` drawing values from a standard normal distribution (`mean = 0` and `sd = 1`). Next, create a random error term `e` that is normally distributed with mean = `0` and standard deviation `1/5`.  
+3. At this point generate **four endogenous variables**: first, the potential outcome `y0`: this is the potential outcome when $y_i|D=0$. Create the variable as given by the sum of an exogenous component (`rnorm(mean=0,sd=1)` that you can generate directly inside `mutate()` or just use `e`) and the variable `z` with a slope parameter of `0.5` (leave no intercept, i.e. `a=0`). Next, generate the treatment assignment in two steps (you can type one next to the other directly inside `mutate()`): first, create `D` as a linear function of `z`, also with slope `0.5` and no intercept; then, use `ifesle()` to set the treatment either to `0` or `1` depending on whether `D` is respectively lower or larger than `mean(D)`. Finally, generate the potential outcome under the treatment `y1` as sum of three components: `y0`, the treatment `D` with a slope parameter of `0.5`, and the error term `e`. self-learning the conditional assignment function `ifelse(test, yes, no)`: if the treatment is `D=0`, then `y1` is equal to the baseline health status under potential outcome with no treatment (`y0`), plus the error term; if the treatment is `D=1`, then `y1` is equal to the baseline potential health with no insurance, plus a constant treatment effect of 0.5, plus the error term. 
+
+
+```{r}
+# set seed
+set.seed(24032021)
+
+# generate the data
+
+# exogenous variables
+dfsb <- tibble(
+  z = rnorm(n = 5000, mean = 0, sd = 1),     # omitted variable (including selection bias)
+  e = rnorm(n = 5000, mean = 0, sd = (1/5))
+)
+
+# endogenous variables
+dfsb <- dfsb %>% 
+  mutate(
+    y0 = e + (0.5 * z),
+    D = 0.5 * z,
+    d = ifelse(test = D < mean(D),           
+               yes = 0,
+               no = 1),
+    y1 = ifelse(test = d == 0,
+                yes = y0 + e,
+                no = y0 + 0.5 + e)
+  )
+```
+
+## Exercise 2.2
+
+Using the simulated data, estimate a linear regression model showing that there is selection bias. 
+Interpret the result in one line. 
+
+```{r}
+summary(lm(formula = y1 ~ d, data = dfsb))
+
+# if a person gets the treatment, the potential outcome increases by ~1.29. 
+# This is not at all equal to the defined treatment effect -> selection bias
+```
+
+## Exercise 2.3
+
+Compute once again the observed health status `y` using the appropriate values of the potential outcomes. 
+Use it to compute: 1. observed average difference between the treatment and control group; 2. average treatment effect on the treated; 3. selection bias. Compare these quantities with the simulated average treatment effect of `D` on `Y0` (`=0.5). 
+
+Conclude writing and showing their equivalence. 
+
+
+```{r}
+# generate y
+dfsb <- dfsb %>% 
+  mutate(
+    y = ifelse(test = d == 1,
+               yes = y1,
+               no = y0)
+  )
+
+# create subsets
+treatment_sb <- dfsb %>% 
+  filter(d == 1)
+
+control_sb <- dfsb %>% 
+  filter(d != 1)
+
+#1 observed average difference between the groups = "treatment effect"
+mean(treatment_sb$y) - mean(control_sb$y) # 1.297935
+
+#2 average treatment effect on the treated
+mean(treatment_sb$y1) - mean(treatment_sb$y0) # 0.4980165
+
+#3 selection bias = E(y0i|D = 1) - E(Y0i|D = 0)
+mean(treatment_sb$y0) - mean(control_sb$y0) # 0.7999189
+
+# Note: avg treatment on the treated + selection bias = treatment effect
+```
+
+
+# Part 3: replication
+
+This week we replicate a juicy new experimental paper published on the Journal of Experimental Political Science:[Druckman et al. (2020)](https://www.cambridge.org/core/journals/journal-of-experimental-political-science/article/how-affective-polarization-shapes-americans-political-beliefs-a-study-of-response-to-the-covid19-pandemic/B52D17EA47CCC436E8B1B3E008CA2A79): How Affective Polarization Shapes Americans’ Political Beliefs: A Study of Response to the COVID-19 Pandemic.  
+
+**Replication goal**. Aim at replicating models 1 and 3 from Table 1. If you manage, try to complete Table 1 and to plot the predictions from Figure 1. As usual: remember that this is mainly a learning opportunity for us and you are allowed to fail the replication. #nostress
+
+**Instructions**.  
+1. First, open the paper, read the abstract and quickly skim through it: what is the main research question? What is the main finding?  
+2. Next, head to the [APSR dataverse page of the study](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8I1PUB&widget=dataverse@harvard) to download the data files. Read the any readme file.  
+3. Note that they also use STATA code, feel free to post questions at the GitHub repo. 
+
+**Warning**. You must work collaboratively using GitHub. Please create the repo at the class organization (not at your personal account). All the tips from PS1 still apply (plan the work, use issues, branches, pull requests...). 
+
+**Tip**.
+A good replication is an active and extended replication: do you see any strange modification of the code? What happens if you change an assumption? Good luck!
+
+
+Import the data
+```{r}
+# check working directory
+getwd()
+
+# import the data with rio and here::here()
+library(rio)
+ap_data <- import(file = here::here("Problem Set 2", "01_Data", "Aff. Pol. Exp. Data.dta"))
+
+# take a look
+View(ap_data)
+summary(ap_data)
+names(ap_data)
+```
+
+
+Let's see if this works...
+```{r}
+# document -> "Computing Figure 1" -> let's see if this works....
+# load the data
+covid <- read.table(file = here::here("Problem Set 2", "01_Data", "expresults from Stata to generate Figure 1.txt"), header = TRUE)
+
+# just copy & paste?
+outgroup=seq(0,1,by=.05)
+
+par(mfrow=c(1,2),oma=c(6,5,2,1),mar=c(1,2,1,1))
+
+plot(outgroup,covid$dem[1:21], ylim=c(1,4), ylab=" ",xlab=" ",axes=F,type="n")
+polygon(c(outgroup,rev(outgroup)),c(covid$dem.ub[1:21],rev(covid$dem.lb[1:21])),col="grey80",border="NA")
+polygon(c(outgroup,rev(outgroup)),c(covid$dem.ub[22:42],rev(covid$dem.lb[22:42])),col="grey80",border="NA")
+
+lines(outgroup,covid$dem[1:21],lwd=2,col="black",lty=2)
+lines(outgroup,covid$dem[22:42],lwd=2,col="black")
+
+axis(1,at = seq(0,1,.2), label = seq(0,1,.2), mgp = c(.8,2,1), cex.axis=1.75)
+axis(2,at = seq(1,4,1), label = seq(1,4,1), mgp = c(.8,2,1), cex.axis=1.75,las=2)
+
+mtext("Democrats",side=3,line=0,cex=2.2,outer=F)
+
+text(0,1.90,"1.96",cex=1.3)
+text(0,2.48,"2.42",cex=1.3)
+
+text(1,0.99,"1.05",cex=1.3)
+text(1,1.24,"1.16",cex=1.3)
+
+legend(0,3.5,legend=c("Trump Treatment","USA Treatment"),lwd=3,lty=c(2,1),cex=2,bty="n",horiz=F)
+
+plot(outgroup,covid$rep[1:21], ylim=c(1,4), ylab=" ",xlab=" ",axes=F,type="n")
+polygon(c(outgroup,rev(outgroup)),c(covid$rep.ub[1:21],rev(covid$rep.lb[1:21])),col="grey80",border="NA")
+polygon(c(outgroup,rev(outgroup)),c(covid$rep.ub[22:42],rev(covid$rep.lb[22:42])),col="grey80",border="NA")
+
+lines(outgroup,covid$rep[1:21],lwd=3,col="black",lty=2)
+lines(outgroup,covid$rep[22:42],lwd=3,col="black",lty=1)
+
+axis(1,at = seq(0,1,.2), label = seq(0,1,.2), mgp = c(.8,2,1), cex.axis=1.75)
+axis(2,at = seq(1,4,1), label = rep(" ",times=4), mgp = c(.8,2,1), cex.axis=1.75,las=2)
+
+mtext("Republicans",side=3,line=0,cex=2.2,outer=F)
+
+text(0,2.02,"1.94",cex=1.3)
+text(0,1.25,"1.31",cex=1.3)
+
+text(1,3.20,"3.14",cex=1.3)
+text(1,2.97,"3.11",cex=1.3)
+
+mtext("Affective Polarization",side=1,line=3,cex=2.2,outer=T)
+mtext("Predicted Evaluation",side=2,line=2,cex=2.2,outer=T)
+# worked!
+```
+
+Lets try to replicate models 1 & 3 from table 1
+-> Aff. Pol. Exp.do: This is the Stata do file that contains the commands used to generate the results presented in the paper and appendix.
+=> that's what we need!
+
+```{r}
+# ckeck what we have...
+names <- as.data.frame(names(ap_data))
+
+# create variable expUS:
+# gen expUS = exptrump => generate new variable
+# recode expUS 0/0 =1 1/1 = 0 => re-code variable 0 to 1 and 1 to 0
+
+ap_data <- ap_data %>% 
+  mutate( 
+    expUS = ifelse(test = exptrump == 0,
+                  yes = 1,
+                  no  = 0))
+
+# check
+ap_data$expUS
+ap_data$exptrump
+# so far so good!
+
+
+# create variable expdv
+# egen expdv = rowmean(expconf flipexpprep flipexpfuture)
+
+# create flipexpprep and flipexpfuture first!
+ap_data <- ap_data %>% 
+  mutate(
+    flipexpprep = 5 - expprep,
+    flipexpfuture = 5 - expfuture
+  )
+
+# expdv
+
+ap_data <- ap_data %>% 
+  mutate(
+    expdv = rowMeans(select(ap_data, expconf, flipexpprep, flipexpfuture))
+  )
+
+# first model fit
+model_1 <- lm(expdv ~ expUS, data = filter(ap_data, dem == 1))
+summary(model_1)
+stargazer::stargazer(model_1, type = "html",
+                     out = "model_1.html")
+
+
+# second model fit
+model_2 <- lm(expdv ~ expUS, data = filter(ap_data, rep == 1))
+summary(model_2)
+stargazer::stargazer(model_2, type = "html",
+                     out = "model_2.html")
+```
+

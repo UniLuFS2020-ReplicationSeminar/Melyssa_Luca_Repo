@@ -1,0 +1,1168 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment\Aff Pol Exp Results.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 9 Aug 2020, 09:02:47
+
+{com}. do "C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment\Aff. Pol. Exp..do"
+{txt}
+{com}. 
+. **computing / re-coding variables / descriptives (recoded education due to a coding error in the survey)
+. recode education 1/1 = 1 2/2 = 2 3/3 = 3 6/6 = 3 4/4 = 4 5/5 = 5 
+{txt}(education: 363 changes made)
+
+{com}. 
+. tab age 
+
+        {txt}age {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}          1        0.04        0.04
+{txt}          2 {c |}{res}        205        8.25        8.29
+{txt}          3 {c |}{res}        457       18.40       26.69
+{txt}          4 {c |}{res}        879       35.39       62.08
+{txt}          5 {c |}{res}        661       26.61       88.69
+{txt}          6 {c |}{res}        281       11.31      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,484      100.00
+{txt}
+{com}. tab gender 
+
+     {txt}gender {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,267       51.03       51.03
+{txt}          2 {c |}{res}      1,194       48.09       99.11
+{txt}          3 {c |}{res}         16        0.64       99.76
+{txt}          4 {c |}{res}          6        0.24      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,483      100.00
+{txt}
+{com}. tab race
+
+       {txt}race {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}      1,757       70.73       70.73
+{txt}          2 {c |}{res}        343       13.81       84.54
+{txt}          3 {c |}{res}         99        3.99       88.53
+{txt}          4 {c |}{res}        224        9.02       97.54
+{txt}          5 {c |}{res}         21        0.85       98.39
+{txt}          6 {c |}{res}         40        1.61      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,484      100.00
+{txt}
+{com}. tab income
+
+     {txt}income {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        666       26.83       26.83
+{txt}          2 {c |}{res}        946       38.11       64.95
+{txt}          3 {c |}{res}        431       17.37       82.31
+{txt}          4 {c |}{res}        379       15.27       97.58
+{txt}          5 {c |}{res}         60        2.42      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,482      100.00
+{txt}
+{com}. tab education 
+
+  {txt}education {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}         50        2.01        2.01
+{txt}          2 {c |}{res}        507       20.41       22.42
+{txt}          3 {c |}{res}      1,023       41.18       63.61
+{txt}          4 {c |}{res}        663       26.69       90.30
+{txt}          5 {c |}{res}        241        9.70      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,484      100.00
+{txt}
+{com}. 
+. gen female = gender
+{txt}(1 missing value generated)
+
+{com}. recode female 1/1 = 0 2/2 = 1 3/4 = 0
+{txt}(female: 2483 changes made)
+
+{com}. gen minority = race
+{txt}
+{com}. recode minority 1/1 = 0 2/6 = 1
+{txt}(minority: 2484 changes made)
+
+{com}. gen afam = race
+{txt}
+{com}. recode afam 1/1 = 0 2/2 = 1 3/6 = 0
+{txt}(afam: 2484 changes made)
+
+{com}. gen lat = race
+{txt}
+{com}. recode lat 1/3 = 0 4/4 = 1 5/6 = 0
+{txt}(lat: 2484 changes made)
+
+{com}. gen asian = race
+{txt}
+{com}. recode asian 1/2 = 0 3/3 = 1 4/6 = 0
+{txt}(asian: 2484 changes made)
+
+{com}. 
+. sum afam lat asian
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 8}afam {c |}{res}      2,484    .1380837    .3450573          0          1
+{txt}{space 9}lat {c |}{res}      2,484    .0901771     .286493          0          1
+{txt}{space 7}asian {c |}{res}      2,484    .0398551     .195658          0          1
+{txt}
+{com}. 
+. **political Knowledge
+. gen p_knowledge_vetob  = p_knowledge_veto
+{txt}(723 missing values generated)
+
+{com}. gen p_knowledge_hofrb = p_knowledge_hofr
+{txt}(482 missing values generated)
+
+{com}. gen p_knowledge_constitutionb  = p_knowledge_constitution
+{txt}(342 missing values generated)
+
+{com}. gen p_knowledge_vpb = p_knowledge_vp
+{txt}(231 missing values generated)
+
+{com}. gen p_knowledge_conservativeb  = p_knowledge_conservative
+{txt}(363 missing values generated)
+
+{com}. 
+. recode p_knowledge_vetob 0/3 = 0 4/4 = 1 5/6 = 0 ./. = 0
+{txt}(p_knowledge_vetob: 2484 changes made)
+
+{com}. recode p_knowledge_hofrb 1/1 = 1 2/4 = 0 ./. = 0
+{txt}(p_knowledge_hofrb: 1066 changes made)
+
+{com}. recode p_knowledge_constitutionb 1/2 = 0 3/3 = 1 4/4 = 0 ./. = 0
+{txt}(p_knowledge_constitutionb: 2484 changes made)
+
+{com}. recode p_knowledge_vpb 1/2 = 0 3/3 = 1 4/5= 0 ./. = 0
+{txt}(p_knowledge_vpb: 2484 changes made)
+
+{com}. recode p_knowledge_conservativeb 1/1 = 0 2/2 = 1 3/4 = 0 ./. = 0
+{txt}(p_knowledge_conservativeb: 2484 changes made)
+
+{com}. gen poliknow = p_knowledge_vetob + p_knowledge_hofrb + p_knowledge_constitutionb + p_knowledge_vpb + p_knowledge_conservativeb
+{txt}
+{com}. sum poliknow 
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}poliknow {c |}{res}      2,484    3.360306    1.518648          0          5
+{txt}
+{com}. 
+. **risk sick (health vulnerability) and work out of home and Fox
+. gen childunder4b = childunder4
+{txt}(3 missing values generated)
+
+{com}. recode childunder4b 1/1 = 0 2/2 =1
+{txt}(childunder4b: 2481 changes made)
+
+{com}. gen pregnantb = pregnant
+{txt}(3 missing values generated)
+
+{com}. recode pregnantb 1/1 = 0 2/2 =1
+{txt}(pregnantb: 2481 changes made)
+
+{com}. gen riskhealthb = riskhealth
+{txt}(1 missing value generated)
+
+{com}. recode riskhealthb 1/1 = 0 2/2 =1 
+{txt}(riskhealthb: 2483 changes made)
+
+{com}. gen agerisk = age
+{txt}
+{com}. recode agerisk 1/5 = 0 6/6 = 1
+{txt}(agerisk: 2484 changes made)
+
+{com}. 
+. gen risksick0 = agerisk + riskhealthb + childunder4b + pregnantb
+{txt}(5 missing values generated)
+
+{com}. tab risksick0
+
+  {txt}risksick0 {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}      1,329       53.61       53.61
+{txt}          1 {c |}{res}        909       36.67       90.28
+{txt}          2 {c |}{res}        211        8.51       98.79
+{txt}          3 {c |}{res}         28        1.13       99.92
+{txt}          4 {c |}{res}          2        0.08      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,479      100.00
+{txt}
+{com}. gen risksick = risksick0
+{txt}(5 missing values generated)
+
+{com}. recode risksick 0/0 = 0 1/4 = 1
+{txt}(risksick: 241 changes made)
+
+{com}. 
+. gen workout = 0
+{txt}
+{com}. recode workout 0/0 = 1 if workleavehome != . & workleavehome > 1
+{txt}(workout: 677 changes made)
+
+{com}. 
+. gen tvnews_fox2 = tvnews_fox
+{txt}(6 missing values generated)
+
+{com}. recode tvnews_fox2 1/1 = 0 2/2 = 1
+{txt}(tvnews_fox2: 2478 changes made)
+
+{com}. 
+. **cases
+. gen casespercapita = day3_avg_cases/countypop
+{txt}(71 missing values generated)
+
+{com}. 
+. **creating out party scale
+. alpha feelingtherm_outgroup patriotic_outgroup intelligent_outgroup honest_outgroup openminded_outgroup generous_outgroup hypocritical_outgroup selfish_outgroup mean_outgroup trust_outgroup friends_outgroup neighbors_outgroup marry_outgroup if pid ~= 4
+
+{txt}Test scale = mean(unstandardized items)
+
+Average interitem covariance:{col 34}{res} .0297773
+{txt}Number of items in the scale:{col 34}{res}       13
+{txt}Scale reliability coefficient:{col 34}{res}   0.8843
+{txt}
+{com}. gen allout2=(feelingtherm_outgroup +patriotic_outgroup +intelligent_outgroup +honest_outgroup +openminded_outgroup +generous_outgroup +hypocritical_outgroup + selfish_outgroup +mean_outgroup +trust_outgroup +friends_outgroup +neighbors_outgroup +marry_outgroup)/13
+{txt}
+{com}. corr allout allout2
+{txt}(obs=2,484)
+
+             {c |}   allout  allout2
+{hline 13}{c +}{hline 18}
+      allout {c |}{res}   1.0000
+     {txt}allout2 {c |}{res}   1.0000   1.0000
+
+{txt}
+{com}. gen negparty = (1-allout)
+{txt}
+{com}. sum negparty
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}negparty {c |}{res}      2,484     .551365    .1843934          0          1
+{txt}
+{com}. 
+. **partisan social identity
+. alpha party_importance party_describe  party_wethey party_extent
+
+{txt}Test scale = mean(unstandardized items)
+
+Average interitem covariance:{col 34}{res} .9336488
+{txt}Number of items in the scale:{col 34}{res}        4
+{txt}Scale reliability coefficient:{col 34}{res}   0.8910
+{txt}
+{com}. egen psociden = rowmean( party_importance party_describe  party_wethey party_extent)
+{txt}(1 missing value generated)
+
+{com}. sum psociden
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}psociden {c |}{res}      2,483    3.053296     1.02358          1          5
+{txt}
+{com}. gen repsociden = rep*psociden
+{txt}(1 missing value generated)
+
+{com}. gen demsociden = dem*psociden
+{txt}(1 missing value generated)
+
+{com}. 
+. ***correlating PID and therms across waves
+. corr feelingtherm_outgroup covfeelingtherm_outgroup if pid !=4 
+{txt}(obs=2,115)
+
+             {c |} feelin.. c~tgroup
+{hline 13}{c +}{hline 18}
+feeli~tgroup {c |}{res}   1.0000
+{txt}covfe~tgroup {c |}{res}   0.7640   1.0000
+
+{txt}
+{com}. 
+. **interactions
+. gen repnegparty = rep*negparty
+{txt}
+{com}. sum negparty repnegparty if  pid !=4 
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 4}negparty {c |}{res}      2,124    .5592026     .183498          0          1
+{txt}{space 1}repnegparty {c |}{res}      2,124    .1822756    .2703119          0          1
+{txt}
+{com}. gen demnegparty = dem*negparty
+{txt}
+{com}. 
+. **experiment analysis
+. gen expUS = exptrump
+{txt}
+{com}. recode expUS 0/0 =1 1/1 = 0
+{txt}(expUS: 2484 changes made)
+
+{com}. 
+. sum expconf expprep expfuture if pid !=4 
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}expconf {c |}{res}      2,123    2.096561    .9460481          1          4
+{txt}{space 5}expprep {c |}{res}      2,123    3.262836    .9701817          1          4
+{txt}{space 3}expfuture {c |}{res}      2,123    3.257654     .926127          1          4
+{txt}
+{com}. gen flipexpprep = 5- expprep
+{txt}(2 missing values generated)
+
+{com}. gen flipexpfuture = 5 - expfuture
+{txt}(2 missing values generated)
+
+{com}. sum expconf flipexpprep flipexpfuture if pid !=4 
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}expconf {c |}{res}      2,123    2.096561    .9460481          1          4
+{txt}{space 1}flipexpprep {c |}{res}      2,123    1.737164    .9701817          1          4
+{txt}flipexpfut~e {c |}{res}      2,123    1.742346     .926127          1          4
+{txt}
+{com}. alpha expconf flipexpprep flipexpfuture
+
+{txt}Test scale = mean(unstandardized items)
+
+Average interitem covariance:{col 34}{res} .4759013
+{txt}Number of items in the scale:{col 34}{res}        3
+{txt}Scale reliability coefficient:{col 34}{res}   0.7627
+{txt}
+{com}. 
+. egen expdv = rowmean(expconf flipexpprep flipexpfuture)
+{txt}(2 missing values generated)
+
+{com}. 
+. gen expdemnegparty = expUS*demnegparty
+{txt}
+{com}. gen exprepnegparty = expUS*repnegparty
+{txt}
+{com}. 
+. **regressions for expeiment (Table 1)
+. regress expdv expUS  if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(1, 1387)      = {res}    60.93
+{txt}       Model {c |} {res} 22.4663101         1  22.4663101   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 511.422807     1,387  .368725888   {txt}R-squared       ={res}    0.0421
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0414
+{txt}       Total {c |} {res} 533.889117     1,388  .384646338   {txt}Root MSE        =   {res} .60723
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expdv{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2} .2543688{col 26}{space 2} .0325874{col 37}{space 1}    7.81{col 46}{space 3}0.000{col 54}{space 4} .1904428{col 67}{space 3} .3182947
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}   1.4375{col 26}{space 2} .0231504{col 37}{space 1}   62.09{col 46}{space 3}0.000{col 54}{space 4} 1.392087{col 67}{space 3} 1.482913
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats") word append 
+{txt}{stata `"shellout using `"covidexp.rtf"'"':covidexp.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp.txt""':seeout}
+
+{com}. regress expdv expUS demnegparty expdemnegparty  if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(3, 1385)      = {res}    81.89
+{txt}       Model {c |} {res} 80.4354031         3   26.811801   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 453.453714     1,385  .327403404   {txt}R-squared       ={res}    0.1507
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1488
+{txt}       Total {c |} {res} 533.889117     1,388  .384646338   {txt}Root MSE        =   {res} .57219
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .4628909{col 28}{space 2} .0995665{col 39}{space 1}    4.65{col 48}{space 3}0.000{col 56}{space 4} .2675735{col 69}{space 3} .6582082
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-.9029871{col 28}{space 2} .1146557{col 39}{space 1}   -7.88{col 48}{space 3}0.000{col 56}{space 4}-1.127905{col 69}{space 3}-.6780695
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}-.3594691{col 28}{space 2} .1643205{col 39}{space 1}   -2.19{col 48}{space 3}0.029{col 56}{space 4}-.6818132{col 69}{space 3}-.0371251
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.957403{col 28}{space 2} .0695251{col 39}{space 1}   28.15{col 48}{space 3}0.000{col 56}{space 4} 1.821018{col 69}{space 3} 2.093789
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats") word append 
+{txt}{stata `"shellout using `"covidexp.rtf"'"':covidexp.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp.txt""':seeout}
+
+{com}. regress expdv expUS  if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(1, 732)       = {res}    30.85
+{txt}       Model {c |} {res} 17.3348734         1  17.3348734   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 411.251414       732  .561818872   {txt}R-squared       ={res}    0.0404
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0391
+{txt}       Total {c |} {res} 428.586287       733   .58470162   {txt}Root MSE        =   {res} .74955
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expdv{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}-.3074124{col 26}{space 2} .0553425{col 37}{space 1}   -5.55{col 46}{space 3}0.000{col 54}{space 4}-.4160614{col 67}{space 3}-.1987633
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.569444{col 26}{space 2} .0395045{col 37}{space 1}   65.04{col 46}{space 3}0.000{col 54}{space 4} 2.491889{col 67}{space 3}    2.647
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans") word append 
+{txt}{stata `"shellout using `"covidexp.rtf"'"':covidexp.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp.txt""':seeout}
+
+{com}. regress expdv expUS  repnegparty exprepnegparty  if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    46.39
+{txt}       Model {c |} {res} 68.6241834         3  22.8747278   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 359.962104       730  .493098772   {txt}R-squared       ={res}    0.1601
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1567
+{txt}       Total {c |} {res} 428.586287       733   .58470162   {txt}Root MSE        =   {res} .70221
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.6262783{col 28}{space 2} .1670266{col 39}{space 1}   -3.75{col 48}{space 3}0.000{col 56}{space 4}-.9541882{col 69}{space 3}-.2983685
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2} 1.208276{col 28}{space 2} .2143633{col 39}{space 1}    5.64{col 48}{space 3}0.000{col 56}{space 4} .7874341{col 69}{space 3} 1.629119
+{txt}exprepnegparty {c |}{col 16}{res}{space 2} .5916787{col 28}{space 2} .3013269{col 39}{space 1}    1.96{col 48}{space 3}0.050{col 56}{space 4}  .000108{col 69}{space 3} 1.183249
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.935594{col 28}{space 2} .1183866{col 39}{space 1}   16.35{col 48}{space 3}0.000{col 56}{space 4} 1.703175{col 69}{space 3} 2.168013
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans") word append 
+{txt}{stata `"shellout using `"covidexp.rtf"'"':covidexp.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp.txt""':seeout}
+
+{com}. 
+.  
+. **regressoins for each outcome varaible (Table S3-1)
+. regress expconf expUS    if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(1, 1387)      = {res}   155.51
+{txt}       Model {c |} {res} 106.253542         1  106.253542   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 947.661505     1,387  .683245498   {txt}R-squared       ={res}    0.1008
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1002
+{txt}       Total {c |} {res} 1053.91505     1,388  .759304789   {txt}Root MSE        =   {res} .82659
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     expconf{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}  .553184{col 26}{space 2} .0443595{col 37}{space 1}   12.47{col 46}{space 3}0.000{col 54}{space 4} .4661651{col 67}{space 3} .6402029
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.555233{col 26}{space 2} .0315133{col 37}{space 1}   49.35{col 46}{space 3}0.000{col 54}{space 4} 1.493414{col 67}{space 3} 1.617051
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Conf") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. regress expconf expUS     if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(1, 732)       = {res}     4.28
+{txt}       Model {c |} {res}  3.3120966         1   3.3120966   {txt}Prob > F        ={res}    0.0388
+{txt}    Residual {c |} {res} 565.888176       732  .773071279   {txt}R-squared       ={res}    0.0058
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0045
+{txt}       Total {c |} {res} 569.200272       733   .77653516   {txt}Root MSE        =   {res} .87924
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     expconf{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}-.1343731{col 26}{space 2} .0649188{col 37}{space 1}   -2.07{col 46}{space 3}0.039{col 54}{space 4}-.2618225{col 67}{space 3}-.0069238
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.661111{col 26}{space 2} .0463403{col 37}{space 1}   57.43{col 46}{space 3}0.000{col 54}{space 4} 2.570135{col 67}{space 3} 2.752087
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Conf") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. 
+. regress flipexpprep expUS    if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(1, 1387)      = {res}     9.29
+{txt}       Model {c |} {res} 5.28493716         1  5.28493716   {txt}Prob > F        ={res}    0.0023
+{txt}    Residual {c |} {res}  788.62579     1,387  .568583843   {txt}R-squared       ={res}    0.0067
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0059
+{txt}       Total {c |} {res} 793.910727     1,388  .571981792   {txt}Root MSE        =   {res} .75404
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1} flipexpprep{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2} .1233723{col 26}{space 2} .0404665{col 37}{space 1}    3.05{col 46}{space 3}0.002{col 54}{space 4} .0439903{col 67}{space 3} .2027544
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.347384{col 26}{space 2} .0287477{col 37}{space 1}   46.87{col 46}{space 3}0.000{col 54}{space 4}  1.29099{col 67}{space 3} 1.403777
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Prep") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. regress flipexpprep expUS     if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(1, 732)       = {res}    28.20
+{txt}       Model {c |} {res} 28.6537619         1  28.6537619   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 743.825802       732  1.01615547   {txt}R-squared       ={res}    0.0371
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0358
+{txt}       Total {c |} {res} 772.479564       733  1.05386025   {txt}Root MSE        =   {res}  1.008
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1} flipexpprep{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}-.3952317{col 26}{space 2} .0744288{col 37}{space 1}   -5.31{col 46}{space 3}0.000{col 54}{space 4}-.5413511{col 67}{space 3}-.2491123
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.558333{col 26}{space 2} .0531287{col 37}{space 1}   48.15{col 46}{space 3}0.000{col 54}{space 4} 2.454031{col 67}{space 3} 2.662636
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Prep") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. 
+. regress flipexpfuture expUS    if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(1, 1387)      = {res}     4.83
+{txt}       Model {c |} {res} 2.60098475         1  2.60098475   {txt}Prob > F        ={res}    0.0282
+{txt}    Residual {c |} {res} 747.653875     1,387   .53904389   {txt}R-squared       ={res}    0.0035
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0027
+{txt}       Total {c |} {res}  750.25486     1,388  .540529438   {txt}Root MSE        =   {res}  .7342
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}flipexpfut~e{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2} .0865499{col 26}{space 2} .0394012{col 37}{space 1}    2.20{col 46}{space 3}0.028{col 54}{space 4} .0092575{col 67}{space 3} .1638424
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.409884{col 26}{space 2}  .027991{col 37}{space 1}   50.37{col 46}{space 3}0.000{col 54}{space 4} 1.354975{col 67}{space 3} 1.464793
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Future") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. regress flipexpfuture expUS     if pid!=4 & rep == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(1, 732)       = {res}    29.30
+{txt}       Model {c |} {res} 28.2780775         1  28.2780775   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 706.490315       732  .965150703   {txt}R-squared       ={res}    0.0385
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0372
+{txt}       Total {c |} {res} 734.768392       733  1.00241254   {txt}Root MSE        =   {res} .98242
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}flipexpfut~e{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}-.3926322{col 26}{space 2} .0725368{col 37}{space 1}   -5.41{col 46}{space 3}0.000{col 54}{space 4}-.5350372{col 67}{space 3}-.2502272
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.488889{col 26}{space 2} .0517781{col 37}{space 1}   48.07{col 46}{space 3}0.000{col 54}{space 4} 2.387238{col 67}{space 3}  2.59054
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp2, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Future") word append 
+{txt}{stata `"shellout using `"covidexp2.rtf"'"':covidexp2.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp2.txt""':seeout}
+
+{com}. 
+. **Table S3-2
+. regress expconf expUS demnegparty expdemnegparty  if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(3, 1385)      = {res}    98.74
+{txt}       Model {c |} {res} 185.694606         3   61.898202   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 868.220441     1,385  .626873964   {txt}R-squared       ={res}    0.1762
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1744
+{txt}       Total {c |} {res} 1053.91505     1,388  .759304789   {txt}Root MSE        =   {res} .79175
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expconf{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .6497394{col 28}{space 2} .1377722{col 39}{space 1}    4.72{col 48}{space 3}0.000{col 56}{space 4} .3794747{col 69}{space 3} .9200041
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-1.196476{col 28}{space 2} .1586515{col 39}{space 1}   -7.54{col 48}{space 3}0.000{col 56}{space 4}-1.507699{col 69}{space 3}-.8852527
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}  -.16479{col 28}{space 2} .2273738{col 39}{space 1}   -0.72{col 48}{space 3}0.469{col 56}{space 4}-.6108242{col 69}{space 3} .2812442
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 2.244115{col 28}{space 2} .0962033{col 39}{space 1}   23.33{col 48}{space 3}0.000{col 56}{space 4} 2.055395{col 69}{space 3} 2.432835
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Conf") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. regress expconf expUS  repnegparty exprepnegparty  if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    26.02
+{txt}       Model {c |} {res} 54.9874634         3  18.3291545   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 514.212809       730  .704401108   {txt}R-squared       ={res}    0.0966
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0929
+{txt}       Total {c |} {res} 569.200272       733   .77653516   {txt}Root MSE        =   {res} .83929
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expconf{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.8382156{col 28}{space 2} .1996314{col 39}{space 1}   -4.20{col 48}{space 3}0.000{col 56}{space 4}-1.230136{col 69}{space 3}-.4462955
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2}  .723393{col 28}{space 2} .2562085{col 39}{space 1}    2.82{col 48}{space 3}0.005{col 56}{space 4} .2203996{col 69}{space 3} 1.226386
+{txt}exprepnegparty {c |}{col 16}{res}{space 2} 1.323324{col 28}{space 2} .3601479{col 39}{space 1}    3.67{col 48}{space 3}0.000{col 56}{space 4}  .616275{col 69}{space 3} 2.030374
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 2.281626{col 28}{space 2} .1414965{col 39}{space 1}   16.12{col 48}{space 3}0.000{col 56}{space 4} 2.003837{col 69}{space 3} 2.559415
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Conf") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. 
+. regress flipexpprep expUS demnegparty expdemnegparty  if pid!=4 & dem == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(3, 1385)      = {res}    40.48
+{txt}       Model {c |} {res} 64.0027855         3  21.3342618   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 729.907942     1,385  .527009344   {txt}R-squared       ={res}    0.0806
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0786
+{txt}       Total {c |} {res} 793.910727     1,388  .571981792   {txt}Root MSE        =   {res} .72595
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   flipexpprep{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}  .449387{col 28}{space 2} .1263225{col 39}{space 1}    3.56{col 48}{space 3}0.000{col 56}{space 4} .2015829{col 69}{space 3}  .697191
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-.7889828{col 28}{space 2} .1454666{col 39}{space 1}   -5.42{col 48}{space 3}0.000{col 56}{space 4}-1.074341{col 69}{space 3}-.5036242
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}-.5633422{col 28}{space 2} .2084776{col 39}{space 1}   -2.70{col 48}{space 3}0.007{col 56}{space 4}-.9723082{col 69}{space 3}-.1543762
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.801648{col 28}{space 2} .0882082{col 39}{space 1}   20.42{col 48}{space 3}0.000{col 56}{space 4} 1.628612{col 69}{space 3} 1.974684
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Prep") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. regress flipexpprep expUS  repnegparty exprepnegparty  if pid!=4 & rep == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    30.91
+{txt}       Model {c |} {res} 87.0589028         3  29.0196343   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 685.420661       730  .938932413   {txt}R-squared       ={res}    0.1127
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1091
+{txt}       Total {c |} {res} 772.479564       733  1.05386025   {txt}Root MSE        =   {res} .96899
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   flipexpprep{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.5380291{col 28}{space 2} .2304814{col 39}{space 1}   -2.33{col 48}{space 3}0.020{col 56}{space 4}-.9905146{col 69}{space 3}-.0855436
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2} 1.504809{col 28}{space 2} .2958018{col 39}{space 1}    5.09{col 48}{space 3}0.000{col 56}{space 4} .9240852{col 69}{space 3} 2.085532
+{txt}exprepnegparty {c |}{col 16}{res}{space 2}  .256396{col 28}{space 2} .4158035{col 39}{space 1}    0.62{col 48}{space 3}0.538{col 56}{space 4}-.5599173{col 69}{space 3} 1.072709
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.768925{col 28}{space 2} .1633627{col 39}{space 1}   10.83{col 48}{space 3}0.000{col 56}{space 4} 1.448208{col 69}{space 3} 2.089642
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Prep") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. 
+. regress flipexpfuture expUS demnegparty expdemnegparty  if pid!=4 & dem == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(3, 1385)      = {res}    27.99
+{txt}       Model {c |} {res} 42.8833796         3  14.2944599   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res}  707.37148     1,385  .510737531   {txt}R-squared       ={res}    0.0572
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0551
+{txt}       Total {c |} {res}  750.25486     1,388  .540529438   {txt}Root MSE        =   {res} .71466
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1} flipexpfuture{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .2895462{col 28}{space 2}  .124357{col 39}{space 1}    2.33{col 48}{space 3}0.020{col 56}{space 4} .0455978{col 69}{space 3} .5334947
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-.7235027{col 28}{space 2} .1432033{col 39}{space 1}   -5.05{col 48}{space 3}0.000{col 56}{space 4}-1.004421{col 69}{space 3} -.442584
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}-.3502751{col 28}{space 2} .2052339{col 39}{space 1}   -1.71{col 48}{space 3}0.088{col 56}{space 4}-.7528781{col 69}{space 3} .0523278
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.826447{col 28}{space 2} .0868358{col 39}{space 1}   21.03{col 48}{space 3}0.000{col 56}{space 4} 1.656103{col 69}{space 3} 1.996791
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats Future") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. regress flipexpfuture expUS  repnegparty exprepnegparty  if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    28.52
+{txt}       Model {c |} {res} 77.0744943         3  25.6914981   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 657.693898       730  .900950545   {txt}R-squared       ={res}    0.1049
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1012
+{txt}       Total {c |} {res} 734.768392       733  1.00241254   {txt}Root MSE        =   {res} .94918
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1} flipexpfuture{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.5025903{col 28}{space 2} .2257715{col 39}{space 1}   -2.23{col 48}{space 3}0.026{col 56}{space 4}-.9458293{col 69}{space 3}-.0593513
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2} 1.396627{col 28}{space 2} .2897571{col 39}{space 1}    4.82{col 48}{space 3}0.000{col 56}{space 4} .8277705{col 69}{space 3} 1.965484
+{txt}exprepnegparty {c |}{col 16}{res}{space 2} .1953157{col 28}{space 2} .4073066{col 39}{space 1}    0.48{col 48}{space 3}0.632{col 56}{space 4}-.6043163{col 69}{space 3} .9949477
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.756232{col 28}{space 2} .1600244{col 39}{space 1}   10.97{col 48}{space 3}0.000{col 56}{space 4} 1.442069{col 69}{space 3} 2.070395
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp3, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans Future") word append 
+{txt}{stata `"shellout using `"covidexp3.rtf"'"':covidexp3.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp3.txt""':seeout}
+
+{com}. 
+. 
+. **Main Regressions with controls (Table S3-3)
+. regress expdv expUS casespercapita risksick workout  afam lat asian female ideology  age education poliknow income  tvnews_fox2  if dem == 1 & pid!=4
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,349
+{txt}{hline 13}{c +}{hline 34}   F(14, 1334)     = {res}    20.61
+{txt}       Model {c |} {res} 90.6782956        14  6.47702112   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 419.243611     1,334   .31427557   {txt}R-squared       ={res}    0.1778
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1692
+{txt}       Total {c |} {res} 509.921907     1,348  .378280346   {txt}Root MSE        =   {res}  .5606
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .2525776{col 28}{space 2} .0308097{col 39}{space 1}    8.20{col 48}{space 3}0.000{col 56}{space 4} .1921369{col 69}{space 3} .3130183
+{txt}casespercapita {c |}{col 16}{res}{space 2} 4.704088{col 28}{space 2} 6.415473{col 39}{space 1}    0.73{col 48}{space 3}0.464{col 56}{space 4}-7.881428{col 69}{space 3}  17.2896
+{txt}{space 6}risksick {c |}{col 16}{res}{space 2}-.0136106{col 28}{space 2} .0324013{col 39}{space 1}   -0.42{col 48}{space 3}0.675{col 56}{space 4}-.0771736{col 69}{space 3} .0499525
+{txt}{space 7}workout {c |}{col 16}{res}{space 2}-.0155814{col 28}{space 2} .0358413{col 39}{space 1}   -0.43{col 48}{space 3}0.664{col 56}{space 4}-.0858928{col 69}{space 3} .0547301
+{txt}{space 10}afam {c |}{col 16}{res}{space 2}-.0408402{col 28}{space 2} .0405499{col 39}{space 1}   -1.01{col 48}{space 3}0.314{col 56}{space 4}-.1203888{col 69}{space 3} .0387084
+{txt}{space 11}lat {c |}{col 16}{res}{space 2} .0081279{col 28}{space 2} .0533528{col 39}{space 1}    0.15{col 48}{space 3}0.879{col 56}{space 4}-.0965367{col 69}{space 3} .1127925
+{txt}{space 9}asian {c |}{col 16}{res}{space 2}-.0571641{col 28}{space 2} .0744299{col 39}{space 1}   -0.77{col 48}{space 3}0.443{col 56}{space 4}-.2031766{col 69}{space 3} .0888483
+{txt}{space 8}female {c |}{col 16}{res}{space 2}-.0456092{col 28}{space 2} .0317979{col 39}{space 1}   -1.43{col 48}{space 3}0.152{col 56}{space 4}-.1079884{col 69}{space 3} .0167701
+{txt}{space 6}ideology {c |}{col 16}{res}{space 2} .0579003{col 28}{space 2}  .012787{col 39}{space 1}    4.53{col 48}{space 3}0.000{col 56}{space 4} .0328155{col 69}{space 3} .0829851
+{txt}{space 11}age {c |}{col 16}{res}{space 2} -.045748{col 28}{space 2} .0150073{col 39}{space 1}   -3.05{col 48}{space 3}0.002{col 56}{space 4}-.0751886{col 69}{space 3}-.0163075
+{txt}{space 5}education {c |}{col 16}{res}{space 2}-.0394365{col 28}{space 2} .0187511{col 39}{space 1}   -2.10{col 48}{space 3}0.036{col 56}{space 4}-.0762214{col 69}{space 3}-.0026516
+{txt}{space 6}poliknow {c |}{col 16}{res}{space 2}-.0844521{col 28}{space 2} .0123719{col 39}{space 1}   -6.83{col 48}{space 3}0.000{col 56}{space 4}-.1087226{col 69}{space 3}-.0601817
+{txt}{space 8}income {c |}{col 16}{res}{space 2} .0146145{col 28}{space 2} .0157058{col 39}{space 1}    0.93{col 48}{space 3}0.352{col 56}{space 4}-.0161963{col 69}{space 3} .0454252
+{txt}{space 3}tvnews_fox2 {c |}{col 16}{res}{space 2}-.1651966{col 28}{space 2} .0345072{col 39}{space 1}   -4.79{col 48}{space 3}0.000{col 56}{space 4}-.2328908{col 69}{space 3}-.0975023
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.988353{col 28}{space 2} .1000762{col 39}{space 1}   19.87{col 48}{space 3}0.000{col 56}{space 4}  1.79203{col 69}{space 3} 2.184677
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp4, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats") word append 
+{txt}{stata `"shellout using `"covidexp4.rtf"'"':covidexp4.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp4.txt""':seeout}
+
+{com}. regress expdv expUS demnegparty expdemnegparty  casespercapita risksick workout  afam lat asian female ideology  age education poliknow income  tvnews_fox2  if dem == 1 & pid!=4 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,349
+{txt}{hline 13}{c +}{hline 34}   F(16, 1332)     = {res}    28.23
+{txt}       Model {c |} {res} 129.117658        16  8.06985361   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 380.804249     1,332  .285889076   {txt}R-squared       ={res}    0.2532
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2442
+{txt}       Total {c |} {res} 509.921907     1,348  .378280346   {txt}Root MSE        =   {res} .53469
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .4510488{col 28}{space 2} .0952022{col 39}{space 1}    4.74{col 48}{space 3}0.000{col 56}{space 4} .2642861{col 69}{space 3} .6378114
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-.7599442{col 28}{space 2} .1115011{col 39}{space 1}   -6.82{col 48}{space 3}0.000{col 56}{space 4}-.9786811{col 69}{space 3}-.5412074
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}-.3422347{col 28}{space 2} .1564905{col 39}{space 1}   -2.19{col 48}{space 3}0.029{col 56}{space 4}-.6492294{col 69}{space 3}  -.03524
+{txt}casespercapita {c |}{col 16}{res}{space 2} 2.410224{col 28}{space 2} 6.123975{col 39}{space 1}    0.39{col 48}{space 3}0.694{col 56}{space 4}-9.603462{col 69}{space 3} 14.42391
+{txt}{space 6}risksick {c |}{col 16}{res}{space 2}-.0138766{col 28}{space 2} .0309079{col 39}{space 1}   -0.45{col 48}{space 3}0.654{col 56}{space 4}-.0745101{col 69}{space 3}  .046757
+{txt}{space 7}workout {c |}{col 16}{res}{space 2}-.0208393{col 28}{space 2} .0342033{col 39}{space 1}   -0.61{col 48}{space 3}0.542{col 56}{space 4}-.0879375{col 69}{space 3} .0462589
+{txt}{space 10}afam {c |}{col 16}{res}{space 2} .0084714{col 28}{space 2} .0389171{col 39}{space 1}    0.22{col 48}{space 3}0.828{col 56}{space 4} -.067874{col 69}{space 3} .0848168
+{txt}{space 11}lat {c |}{col 16}{res}{space 2}  .036191{col 28}{space 2} .0509446{col 39}{space 1}    0.71{col 48}{space 3}0.478{col 56}{space 4}-.0637494{col 69}{space 3} .1361314
+{txt}{space 9}asian {c |}{col 16}{res}{space 2}-.0488945{col 28}{space 2} .0710134{col 39}{space 1}   -0.69{col 48}{space 3}0.491{col 56}{space 4}-.1882049{col 69}{space 3} .0904158
+{txt}{space 8}female {c |}{col 16}{res}{space 2}-.0536135{col 28}{space 2} .0303387{col 39}{space 1}   -1.77{col 48}{space 3}0.077{col 56}{space 4}-.1131304{col 69}{space 3} .0059035
+{txt}{space 6}ideology {c |}{col 16}{res}{space 2} .0324769{col 28}{space 2} .0123971{col 39}{space 1}    2.62{col 48}{space 3}0.009{col 56}{space 4} .0081569{col 69}{space 3} .0567969
+{txt}{space 11}age {c |}{col 16}{res}{space 2}-.0477268{col 28}{space 2}  .014317{col 39}{space 1}   -3.33{col 48}{space 3}0.001{col 56}{space 4}-.0758132{col 69}{space 3}-.0196404
+{txt}{space 5}education {c |}{col 16}{res}{space 2}-.0354668{col 28}{space 2} .0179006{col 39}{space 1}   -1.98{col 48}{space 3}0.048{col 56}{space 4}-.0705831{col 69}{space 3}-.0003504
+{txt}{space 6}poliknow {c |}{col 16}{res}{space 2}  -.08405{col 28}{space 2}    .0118{col 39}{space 1}   -7.12{col 48}{space 3}0.000{col 56}{space 4}-.1071985{col 69}{space 3}-.0609014
+{txt}{space 8}income {c |}{col 16}{res}{space 2} .0051949{col 28}{space 2} .0150295{col 39}{space 1}    0.35{col 48}{space 3}0.730{col 56}{space 4}-.0242892{col 69}{space 3} .0346791
+{txt}{space 3}tvnews_fox2 {c |}{col 16}{res}{space 2}-.1111372{col 28}{space 2} .0332846{col 39}{space 1}   -3.34{col 48}{space 3}0.001{col 56}{space 4}-.1764331{col 69}{space 3}-.0458414
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 2.473495{col 28}{space 2} .1185249{col 39}{space 1}   20.87{col 48}{space 3}0.000{col 56}{space 4} 2.240979{col 69}{space 3}  2.70601
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp4, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats") word append 
+{txt}{stata `"shellout using `"covidexp4.rtf"'"':covidexp4.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp4.txt""':seeout}
+
+{com}. regress expdv expUS  casespercapita risksick workout  afam lat asian female ideology age education poliknow income  tvnews_fox2  if rep == 1 & pid!=4
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       703
+{txt}{hline 13}{c +}{hline 34}   F(14, 688)      = {res}    11.04
+{txt}       Model {c |} {res} 75.4927104        14  5.39233646   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 335.944308       688  .488291145   {txt}R-squared       ={res}    0.1835
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1669
+{txt}       Total {c |} {res} 411.437018       702  .586092618   {txt}Root MSE        =   {res} .69878
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.3101945{col 28}{space 2} .0529524{col 39}{space 1}   -5.86{col 48}{space 3}0.000{col 56}{space 4}-.4141622{col 69}{space 3}-.2062268
+{txt}casespercapita {c |}{col 16}{res}{space 2}-37.40353{col 28}{space 2} 12.72576{col 39}{space 1}   -2.94{col 48}{space 3}0.003{col 56}{space 4}-62.38951{col 69}{space 3}-12.41754
+{txt}{space 6}risksick {c |}{col 16}{res}{space 2}-.0583307{col 28}{space 2} .0558095{col 39}{space 1}   -1.05{col 48}{space 3}0.296{col 56}{space 4} -.167908{col 69}{space 3} .0512466
+{txt}{space 7}workout {c |}{col 16}{res}{space 2} .0180534{col 28}{space 2} .0594022{col 39}{space 1}    0.30{col 48}{space 3}0.761{col 56}{space 4}-.0985779{col 69}{space 3} .1346847
+{txt}{space 10}afam {c |}{col 16}{res}{space 2}-.0240315{col 28}{space 2} .1476754{col 39}{space 1}   -0.16{col 48}{space 3}0.871{col 56}{space 4}  -.31398{col 69}{space 3}  .265917
+{txt}{space 11}lat {c |}{col 16}{res}{space 2} .0343708{col 28}{space 2} .1131121{col 39}{space 1}    0.30{col 48}{space 3}0.761{col 56}{space 4}-.1877155{col 69}{space 3} .2564571
+{txt}{space 9}asian {c |}{col 16}{res}{space 2}-.4102178{col 28}{space 2} .1480217{col 39}{space 1}   -2.77{col 48}{space 3}0.006{col 56}{space 4}-.7008463{col 69}{space 3}-.1195893
+{txt}{space 8}female {c |}{col 16}{res}{space 2} .0277098{col 28}{space 2} .0562607{col 39}{space 1}    0.49{col 48}{space 3}0.623{col 56}{space 4}-.0827535{col 69}{space 3}  .138173
+{txt}{space 6}ideology {c |}{col 16}{res}{space 2} .1544195{col 28}{space 2} .0224231{col 39}{space 1}    6.89{col 48}{space 3}0.000{col 56}{space 4} .1103936{col 69}{space 3} .1984454
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0503861{col 28}{space 2} .0271382{col 39}{space 1}    1.86{col 48}{space 3}0.064{col 56}{space 4}-.0028976{col 69}{space 3} .1036697
+{txt}{space 5}education {c |}{col 16}{res}{space 2}-.0134893{col 28}{space 2} .0324964{col 39}{space 1}   -0.42{col 48}{space 3}0.678{col 56}{space 4}-.0772934{col 69}{space 3} .0503148
+{txt}{space 6}poliknow {c |}{col 16}{res}{space 2} .0100617{col 28}{space 2} .0227451{col 39}{space 1}    0.44{col 48}{space 3}0.658{col 56}{space 4}-.0345965{col 69}{space 3} .0547198
+{txt}{space 8}income {c |}{col 16}{res}{space 2}  -.00093{col 28}{space 2} .0276975{col 39}{space 1}   -0.03{col 48}{space 3}0.973{col 56}{space 4}-.0553119{col 69}{space 3} .0534518
+{txt}{space 3}tvnews_fox2 {c |}{col 16}{res}{space 2}-.2582964{col 28}{space 2} .0546625{col 39}{space 1}   -4.73{col 48}{space 3}0.000{col 56}{space 4}-.3656218{col 69}{space 3}-.1509711
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.761127{col 28}{space 2} .1765916{col 39}{space 1}    9.97{col 48}{space 3}0.000{col 56}{space 4} 1.414404{col 69}{space 3}  2.10785
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp4, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans") word append 
+{txt}{stata `"shellout using `"covidexp4.rtf"'"':covidexp4.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp4.txt""':seeout}
+
+{com}. regress expdv expUS  repnegparty exprepnegparty casespercapita risksick workout  afam lat asian female ideology age education poliknow income  tvnews_fox2  if rep == 1 & pid!=4 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       703
+{txt}{hline 13}{c +}{hline 34}   F(16, 686)      = {res}    14.43
+{txt}       Model {c |} {res}  103.62987        16  6.47686685   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 307.807148       686  .448698467   {txt}R-squared       ={res}    0.2519
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.2344
+{txt}       Total {c |} {res} 411.437018       702  .586092618   {txt}Root MSE        =   {res} .66985
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.6375161{col 28}{space 2} .1656837{col 39}{space 1}   -3.85{col 48}{space 3}0.000{col 56}{space 4}-.9628242{col 69}{space 3} -.312208
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2} .8991684{col 28}{space 2} .2162009{col 39}{space 1}    4.16{col 48}{space 3}0.000{col 56}{space 4} .4746734{col 69}{space 3} 1.323663
+{txt}exprepnegparty {c |}{col 16}{res}{space 2} .6066058{col 28}{space 2} .2998659{col 39}{space 1}    2.02{col 48}{space 3}0.043{col 56}{space 4} .0178407{col 69}{space 3} 1.195371
+{txt}casespercapita {c |}{col 16}{res}{space 2}-33.67287{col 28}{space 2} 12.24445{col 39}{space 1}   -2.75{col 48}{space 3}0.006{col 56}{space 4}-57.71396{col 69}{space 3}-9.631786
+{txt}{space 6}risksick {c |}{col 16}{res}{space 2}-.0263201{col 28}{space 2} .0536619{col 39}{space 1}   -0.49{col 48}{space 3}0.624{col 56}{space 4}-.1316814{col 69}{space 3} .0790412
+{txt}{space 7}workout {c |}{col 16}{res}{space 2}  .000138{col 28}{space 2} .0569939{col 39}{space 1}    0.00{col 48}{space 3}0.998{col 56}{space 4}-.1117654{col 69}{space 3} .1120414
+{txt}{space 10}afam {c |}{col 16}{res}{space 2}-.0905794{col 28}{space 2} .1419092{col 39}{space 1}   -0.64{col 48}{space 3}0.523{col 56}{space 4}-.3692078{col 69}{space 3} .1880491
+{txt}{space 11}lat {c |}{col 16}{res}{space 2} .0818081{col 28}{space 2} .1087314{col 39}{space 1}    0.75{col 48}{space 3}0.452{col 56}{space 4}-.1316781{col 69}{space 3} .2952944
+{txt}{space 9}asian {c |}{col 16}{res}{space 2}-.3656096{col 28}{space 2} .1420741{col 39}{space 1}   -2.57{col 48}{space 3}0.010{col 56}{space 4}-.6445619{col 69}{space 3}-.0866573
+{txt}{space 8}female {c |}{col 16}{res}{space 2}  .005572{col 28}{space 2} .0541305{col 39}{space 1}    0.10{col 48}{space 3}0.918{col 56}{space 4}-.1007093{col 69}{space 3} .1118533
+{txt}{space 6}ideology {c |}{col 16}{res}{space 2} .1056489{col 28}{space 2} .0223644{col 39}{space 1}    4.72{col 48}{space 3}0.000{col 56}{space 4}  .061738{col 69}{space 3} .1495598
+{txt}{space 11}age {c |}{col 16}{res}{space 2} .0460398{col 28}{space 2} .0261042{col 39}{space 1}    1.76{col 48}{space 3}0.078{col 56}{space 4} -.005214{col 69}{space 3} .0972935
+{txt}{space 5}education {c |}{col 16}{res}{space 2} .0054622{col 28}{space 2} .0312742{col 39}{space 1}    0.17{col 48}{space 3}0.861{col 56}{space 4}-.0559425{col 69}{space 3} .0668668
+{txt}{space 6}poliknow {c |}{col 16}{res}{space 2} .0205007{col 28}{space 2} .0218445{col 39}{space 1}    0.94{col 48}{space 3}0.348{col 56}{space 4}-.0223894{col 69}{space 3} .0633909
+{txt}{space 8}income {c |}{col 16}{res}{space 2} .0128984{col 28}{space 2} .0266257{col 39}{space 1}    0.48{col 48}{space 3}0.628{col 56}{space 4}-.0393793{col 69}{space 3} .0651761
+{txt}{space 3}tvnews_fox2 {c |}{col 16}{res}{space 2}-.2216799{col 28}{space 2} .0526244{col 39}{space 1}   -4.21{col 48}{space 3}0.000{col 56}{space 4}-.3250041{col 69}{space 3}-.1183558
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.400472{col 28}{space 2} .1956955{col 39}{space 1}    7.16{col 48}{space 3}0.000{col 56}{space 4} 1.016238{col 69}{space 3} 1.784706
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp4, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans") word append 
+{txt}{stata `"shellout using `"covidexp4.rtf"'"':covidexp4.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp4.txt""':seeout}
+
+{com}. 
+. 
+. **partisanship as social identity (Table 2)
+. gen expdemsocial = expUS*demsociden
+{txt}(1 missing value generated)
+
+{com}. gen exprepsocial = expUS*repsociden
+{txt}(1 missing value generated)
+
+{com}. 
+. 
+. regress expdv expUS demsociden expdemsocial  if pid!=4 & dem == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,388
+{txt}{hline 13}{c +}{hline 34}   F(3, 1384)      = {res}    24.11
+{txt}       Model {c |} {res} 26.5101851         3  8.83672837   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 507.324818     1,384  .366564175   {txt}R-squared       ={res}    0.0497
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0476
+{txt}       Total {c |} {res} 533.835003     1,387  .384884645   {txt}Root MSE        =   {res} .60545
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expdv{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2} .3670168{col 26}{space 2} .1073039{col 37}{space 1}    3.42{col 46}{space 3}0.001{col 54}{space 4}  .156521{col 67}{space 3} .5775126
+{txt}{space 2}demsociden {c |}{col 14}{res}{space 2}-.0314257{col 26}{space 2} .0225229{col 37}{space 1}   -1.40{col 46}{space 3}0.163{col 54}{space 4}-.0756084{col 67}{space 3} .0127571
+{txt}expdemsocial {c |}{col 14}{res}{space 2}-.0357054{col 26}{space 2} .0318543{col 37}{space 1}   -1.12{col 46}{space 3}0.263{col 54}{space 4}-.0981933{col 67}{space 3} .0267825
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 1.539177{col 26}{space 2} .0764404{col 37}{space 1}   20.14{col 46}{space 3}0.000{col 54}{space 4} 1.389225{col 67}{space 3} 1.689128
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp5, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Democrats") word append 
+{txt}{stata `"shellout using `"covidexp5.rtf"'"':covidexp5.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp5.txt""':seeout}
+
+{com}. regress expdv expUS  repsociden exprepsocial  if pid!=4 & rep == 1
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    21.64
+{txt}       Model {c |} {res} 34.9999678         3  11.6666559   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 393.586319       730  .539159342   {txt}R-squared       ={res}    0.0817
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0779
+{txt}       Total {c |} {res} 428.586287       733   .58470162   {txt}Root MSE        =   {res} .73427
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}       expdv{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}expUS {c |}{col 14}{res}{space 2}-.1567923{col 26}{space 2} .1758202{col 37}{space 1}   -0.89{col 46}{space 3}0.373{col 54}{space 4} -.501966{col 67}{space 3} .1883813
+{txt}{space 2}repsociden {c |}{col 14}{res}{space 2} .1887457{col 26}{space 2} .0406879{col 37}{space 1}    4.64{col 46}{space 3}0.000{col 54}{space 4} .1088663{col 67}{space 3}  .268625
+{txt}exprepsocial {c |}{col 14}{res}{space 2}-.0508208{col 26}{space 2}  .057855{col 37}{space 1}   -0.88{col 46}{space 3}0.380{col 54}{space 4}-.1644028{col 67}{space 3} .0627612
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 2.021645{col 26}{space 2} .1242688{col 37}{space 1}   16.27{col 46}{space 3}0.000{col 54}{space 4} 1.777678{col 67}{space 3} 2.265612
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. outreg2 using covidexp5, alpha(.01, .05, .1) bdec(3) sdec(3) ctitle("Republicans") word append 
+{txt}{stata `"shellout using `"covidexp5.rtf"'"':covidexp5.rtf}
+{browse `"C:\jamie\Current papers\Affective polarization\Samara project\COVID\experiment"' :dir}{com} : {txt}{stata `"seeout using "covidexp5.txt""':seeout}
+
+{com}. 
+. ***predictions (Figure 1)
+. estsimp regress expdv expUS demnegparty expdemnegparty  if pid!=4 & dem == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}     1,389
+{txt}{hline 13}{c +}{hline 34}   F(3, 1385)      = {res}    81.89
+{txt}       Model {c |} {res} 80.4354031         3   26.811801   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 453.453714     1,385  .327403404   {txt}R-squared       ={res}    0.1507
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1488
+{txt}       Total {c |} {res} 533.889117     1,388  .384646338   {txt}Root MSE        =   {res} .57219
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2} .4628909{col 28}{space 2} .0995665{col 39}{space 1}    4.65{col 48}{space 3}0.000{col 56}{space 4} .2675735{col 69}{space 3} .6582082
+{txt}{space 3}demnegparty {c |}{col 16}{res}{space 2}-.9029871{col 28}{space 2} .1146557{col 39}{space 1}   -7.88{col 48}{space 3}0.000{col 56}{space 4}-1.127905{col 69}{space 3}-.6780695
+{txt}expdemnegparty {c |}{col 16}{res}{space 2}-.3594691{col 28}{space 2} .1643205{col 39}{space 1}   -2.19{col 48}{space 3}0.029{col 56}{space 4}-.6818132{col 69}{space 3}-.0371251
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.957403{col 28}{space 2} .0695251{col 39}{space 1}   28.15{col 48}{space 3}0.000{col 56}{space 4} 1.821018{col 69}{space 3} 2.093789
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+Simulating main parameters.  Please wait....
+% of simulations completed: 25% 50% 75% 100% 
+
+
+Simulating sigma-squared.  Please wait
+
+
+Number of simulations  : 1000
+Names of new variables : b1 b2 b3 b4 b5
+{txt}
+{com}. setx 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 1.953829     .0716946     1.822376    2.095565
+{txt}
+{com}. setx expUS 0
+{txt}
+{com}. setx demnegparty 1
+{txt}
+{com}. setx expdemnegparty 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 1.054514     .0561973     .9430517    1.165834
+{txt}
+{com}. setx expUS 1
+{txt}
+{com}. setx demnegparty 0
+{txt}
+{com}. setx expdemnegparty 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res}  2.41399     .0698343     2.273204    2.546036
+{txt}
+{com}. setx expUS 1
+{txt}
+{com}. setx demnegparty 1
+{txt}
+{com}. setx expdemnegparty 1
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 1.161935     .0549504     1.051741    1.263281
+{txt}
+{com}. 
+. drop b1 b2 b3 b4 b5
+{txt}
+{com}. 
+. estsimp regress expdv expUS  repnegparty exprepnegparty  if pid!=4 & rep == 1 
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}       734
+{txt}{hline 13}{c +}{hline 34}   F(3, 730)       = {res}    46.39
+{txt}       Model {c |} {res} 68.6241834         3  22.8747278   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 359.962104       730  .493098772   {txt}R-squared       ={res}    0.1601
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.1567
+{txt}       Total {c |} {res} 428.586287       733   .58470162   {txt}Root MSE        =   {res} .70221
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         expdv{col 16}{c |}      Coef.{col 28}   Std. Err.{col 40}      t{col 48}   P>|t|{col 56}     [95% Con{col 69}f. Interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}expUS {c |}{col 16}{res}{space 2}-.6262783{col 28}{space 2} .1670266{col 39}{space 1}   -3.75{col 48}{space 3}0.000{col 56}{space 4}-.9541882{col 69}{space 3}-.2983685
+{txt}{space 3}repnegparty {c |}{col 16}{res}{space 2} 1.208276{col 28}{space 2} .2143633{col 39}{space 1}    5.64{col 48}{space 3}0.000{col 56}{space 4} .7874341{col 69}{space 3} 1.629119
+{txt}exprepnegparty {c |}{col 16}{res}{space 2} .5916787{col 28}{space 2} .3013269{col 39}{space 1}    1.96{col 48}{space 3}0.050{col 56}{space 4}  .000108{col 69}{space 3} 1.183249
+{txt}{space 9}_cons {c |}{col 16}{res}{space 2} 1.935594{col 28}{space 2} .1183866{col 39}{space 1}   16.35{col 48}{space 3}0.000{col 56}{space 4} 1.703175{col 69}{space 3} 2.168013
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+Simulating main parameters.  Please wait....
+% of simulations completed: 25% 50% 75% 100% 
+
+
+Simulating sigma-squared.  Please wait
+
+
+Number of simulations  : 1000
+Names of new variables : b1 b2 b3 b4 b5
+{txt}
+{com}. setx 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 1.936388     .1146748     1.693509    2.151994
+{txt}
+{com}. setx expUS 0
+{txt}
+{com}. setx repnegparty 1
+{txt}
+{com}. setx exprepnegparty 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 3.143035     .1018422     2.942478    3.346384
+{txt}
+{com}. setx expUS 1
+{txt}
+{com}. setx repnegparty 0
+{txt}
+{com}. setx exprepnegparty 0
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res} 1.311634     .1179402     1.086725    1.551124
+{txt}
+{com}. setx expUS 1
+{txt}
+{com}. setx repnegparty 1
+{txt}
+{com}. setx exprepnegparty 1
+{txt}
+{com}. simqi
+
+{txt}      Quantity of Interest |     Mean       Std. Err.    [95% Conf. Interval]
+---------------------------+--------------------------------------------------
+                  E(expdv) |  {res}  3.10845     .1073129     2.900732    3.321568
+{txt}
+{com}. 
+. drop b1 b2 b3 b4 b5
+{txt}
+{com}. 
+. sum *
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}pid {c |}{res}      2,484    3.316425    2.089932          1          7
+{txt}{space 9}dem {c |}{res}      2,484    .5591787    .4965855          0          1
+{txt}{space 9}rep {c |}{res}      2,484    .2958937    .4565354          0          1
+{txt}{space 4}ideology {c |}{res}      2,484    3.659823    1.603906          1          7
+{txt}{space 3}education {c |}{res}      2,484    3.216586    .9450204          1          5
+{txt}{hline 13}{c +}{hline 57}
+{space 6}income {c |}{res}      2,482    2.283239    1.091147          1          5
+{txt}{space 8}race {c |}{res}      2,484    1.602657    1.133253          1          6
+{txt}{space 6}gender {c |}{res}      2,483    1.501007    .5267798          1          4
+{txt}{space 9}age {c |}{res}      2,484     4.14211    1.102999          1          6
+{txt}p_knowledg~o {c |}{res}      1,761    3.890403    .8138879          1          5
+{txt}{hline 13}{c +}{hline 57}
+p_knowledg~r {c |}{res}      2,002    1.322178    .5286378          1          3
+{txt}p_knowledg~n {c |}{res}      2,142    2.776844    .4780719          1          3
+{txt}p_knowledg~p {c |}{res}      2,253    3.003551    .1884446          1          4
+{txt}p_knowledg~e {c |}{res}      2,121    2.009901    .4549477          1          3
+{txt}party_impo~e {c |}{res}      2,483      3.1176    1.215277          1          5
+{txt}{hline 13}{c +}{hline 57}
+party_desc~e {c |}{res}      2,483     3.21466      1.0573          1          5
+{txt}party_wethey {c |}{res}      2,482    2.629734    1.257741          1          5
+{txt}party_extent {c |}{res}      2,483    3.250906    1.177051          1          5
+{txt}feeli~tgroup {c |}{res}      2,484    .4011957    .2560232          0          1
+{txt}feeli~ngroup {c |}{res}      2,483    .6285461    .2357359          0          1
+{txt}{hline 13}{c +}{hline 57}
+patri~tgroup {c |}{res}      2,484    .4506844    .2616276          0          1
+{txt}intel~tgroup {c |}{res}      2,484    .4383052    .2543284          0          1
+{txt}honest_out~p {c |}{res}      2,484    .3877818    .2652188          0          1
+{txt}openm~tgroup {c |}{res}      2,484    .3245773    .2810444          0          1
+{txt}generous_o~p {c |}{res}      2,484    .3642311    .2635949          0          1
+{txt}{hline 13}{c +}{hline 57}
+hypoc~tgroup {c |}{res}      2,484    .4030797     .304503          0          1
+{txt}selfish_ou~p {c |}{res}      2,484    .4452496    .3034763          0          1
+{txt}mean_outgr~p {c |}{res}      2,484    .5140902    .3036938          0          1
+{txt}patri~ngroup {c |}{res}      2,484    .6126208    .2477704          0          1
+{txt}intel~ngroup {c |}{res}      2,482    .6230862    .2310074          0          1
+{txt}{hline 13}{c +}{hline 57}
+honest_ing~p {c |}{res}      2,484    .5711554    .2373338          0          1
+{txt}openm~ngroup {c |}{res}      2,483    .5946436    .2679937          0          1
+{txt}generous_i~p {c |}{res}      2,482    .5895447    .2484626          0          1
+{txt}hypoc~ngroup {c |}{res}      2,483    .6134716     .265223          0          1
+{txt}selfish_in~p {c |}{res}      2,484    .6598229    .2573333          0          1
+{txt}{hline 13}{c +}{hline 57}
+mean_ingroup {c |}{res}      2,480    .6996976    .2605478          0          1
+{txt}trust_outg~p {c |}{res}      2,484    .2866345    .2444851          0          1
+{txt}trust_ingr~p {c |}{res}      2,483    .5514499    .2453145          0          1
+{txt}friends_ou~p {c |}{res}      2,484    .5746109    .3179107          0          1
+{txt}neigh~tgroup {c |}{res}      2,484    .6095008    .3098119          0          1
+{txt}{hline 13}{c +}{hline 57}
+marry_outg~p {c |}{res}      2,484    .6323135    .3171404          0          1
+{txt}friends_in~p {c |}{res}      2,484    .7734836    .2569063          0          1
+{txt}neigh~ngroup {c |}{res}      2,483    .7721842    .2585445          0          1
+{txt}marry_ingr~p {c |}{res}      2,484    .8122652    .2757382          0          1
+{txt}covfe~tgroup {c |}{res}      2,472    .3913673    .2368656          0          1
+{txt}{hline 13}{c +}{hline 57}
+covfe~ngroup {c |}{res}      2,481    .6237848     .228524          0          1
+{txt}{space 5}expconf {c |}{res}      2,482    2.106366    .9454956          1          4
+{txt}{space 5}expprep {c |}{res}      2,482    3.226833    .9919655          1          4
+{txt}{space 3}expfuture {c |}{res}      2,482     3.23328    .9395109          1          4
+{txt}{space 2}tvnews_fox {c |}{res}      2,478    1.580307    .4936083          1          2
+{txt}{hline 13}{c +}{hline 57}
+workleaveh~e {c |}{res}      1,175    2.380426    1.333282          1          4
+{txt}househealh~e {c |}{res}      2,484    1.141707    .3488195          1          2
+{txt}{space 1}childunder4 {c |}{res}      2,481    1.120919    .3260988          1          2
+{txt}{space 4}pregnant {c |}{res}      2,481    1.030633    .1723555          1          2
+{txt}{space 2}riskhealth {c |}{res}      2,483    1.310109    .4626311          1          2
+{txt}{hline 13}{c +}{hline 57}
+{space 7}cases {c |}{res}      2,437    4152.249    14419.62          1     103208
+{txt}{space 6}deaths {c |}{res}      2,437    186.3607    767.1316          0       6717
+{txt}{space 3}cases_lag {c |}{res}      2,432    3875.907    13509.34          1      98308
+{txt}{space 2}cases_lag2 {c |}{res}      2,429    3653.464    12859.51          1      92384
+{txt}{space 2}deaths_lag {c |}{res}      2,432    154.1595    638.4475          0       6202
+{txt}{hline 13}{c +}{hline 57}
+{space 1}deaths_lag2 {c |}{res}      2,429     127.802    522.2361          0       5663
+{txt}day3_avg_c~s {c |}{res}      2,429    3900.026    13603.21          1   97966.66
+{txt}day3_avg_d~s {c |}{res}      2,429    156.3755    641.8701          0       6194
+{txt}{space 3}countypop {c |}{res}      2,461     1403579     2295736       1837   1.00e+07
+{txt}{space 6}allout {c |}{res}      2,484     .448635    .1843934          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 4}exptrump {c |}{res}      2,484    .4935588    .5000592          0          1
+{txt}{space 6}female {c |}{res}      2,483    .4808699    .4997345          0          1
+{txt}{space 4}minority {c |}{res}      2,484    .2926731    .4550812          0          1
+{txt}{space 8}afam {c |}{res}      2,484    .1380837    .3450573          0          1
+{txt}{space 9}lat {c |}{res}      2,484    .0901771     .286493          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 7}asian {c |}{res}      2,484    .0398551     .195658          0          1
+{txt}p_knowled~ob {c |}{res}      2,484    .5390499    .4985731          0          1
+{txt}p_knowled~rb {c |}{res}      2,484    .5708535     .495054          0          1
+{txt}p_knowled~nb {c |}{res}      2,484    .6936393    .4610742          0          1
+{txt}p_knowled~pb {c |}{res}      2,484    .8796296    .3254597          0          1
+{txt}{hline 13}{c +}{hline 57}
+p_knowled~eb {c |}{res}      2,484    .6771337    .4676662          0          1
+{txt}{space 4}poliknow {c |}{res}      2,484    3.360306    1.518648          0          5
+{txt}childunder4b {c |}{res}      2,481     .120919    .3260988          0          1
+{txt}{space 3}pregnantb {c |}{res}      2,481    .0306328    .1723555          0          1
+{txt}{space 1}riskhealthb {c |}{res}      2,483    .3101087    .4626311          0          1
+{txt}{hline 13}{c +}{hline 57}
+{space 5}agerisk {c |}{res}      2,484     .113124    .3168081          0          1
+{txt}{space 3}risksick0 {c |}{res}      2,479    .5740218    .7017121          0          4
+{txt}{space 4}risksick {c |}{res}      2,479    .4638967    .4987955          0          1
+{txt}{space 5}workout {c |}{res}      2,484    .2725443     .445358          0          1
+{txt}{space 1}tvnews_fox2 {c |}{res}      2,478    .5803067    .4936083          0          1
+{txt}{hline 13}{c +}{hline 57}
+casesperca~a {c |}{res}      2,413    .0012464    .0022438   .0000121   .0175599
+{txt}{space 5}allout2 {c |}{res}      2,484     .448635    .1843934          0          1
+{txt}{space 4}negparty {c |}{res}      2,484     .551365    .1843934          0          1
+{txt}{space 4}psociden {c |}{res}      2,483    3.053296     1.02358          1          5
+{txt}{space 2}repsociden {c |}{res}      2,483    .8554504    1.414534          0          5
+{txt}{hline 13}{c +}{hline 57}
+{space 2}demsociden {c |}{res}      2,483    1.794402    1.767416          0          5
+{txt}{space 1}repnegparty {c |}{res}      2,484    .1558588    .2580572          0          1
+{txt}{space 1}demnegparty {c |}{res}      2,484    .3222999    .3185445          0          1
+{txt}{space 7}expUS {c |}{res}      2,484    .5064412    .5000592          0          1
+{txt}{space 1}flipexpprep {c |}{res}      2,482    1.773167    .9919655          1          4
+{txt}{hline 13}{c +}{hline 57}
+flipexpfut~e {c |}{res}      2,482     1.76672    .9395109          1          4
+{txt}{space 7}expdv {c |}{res}      2,482    1.882084    .7899399          1          4
+{txt}expdemnegp~y {c |}{res}      2,484    .1628303     .277456          0          1
+{txt}exprepnegp~y {c |}{res}      2,484    .0796933    .2006821          0          1
+{txt}expdemsocial {c |}{res}      2,483    .8979058    1.531498          0          5
+{txt}{hline 13}{c +}{hline 57}
+exprepsocial {c |}{res}      2,483    .4337495     1.09076          0          5
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
