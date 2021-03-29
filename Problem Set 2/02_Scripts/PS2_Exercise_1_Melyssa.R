@@ -52,11 +52,13 @@ controlgroup <- df %>%
   filter(d != 1)
 
 #compute the observed average difference between the treatment and control group
-mean(treatmentgroup$y) - mean(controlgroup$y)
+mean(treatmentgroup$d) - mean(treatmentgroup$d)
 
-#results 0.5013113 --> close to the average treatment effect ("0.5") and also close to the linear regression model (i.e., 0.503219).
-
+#results: 1 --> not close to the average treatment effect ("0.5") and also not close to the linear regression model (i.e., 0.503219).
 
 #exercise 1.5
 #compute the average treatment effect on the treated and the selection bias
-mean(treatmentgroup$y1) - mean(treatmentgroup$y0)
+mean(treatmentgroup$y) - mean(controlgroup$y)
+# results: 0.5013113
+
+
