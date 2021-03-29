@@ -195,6 +195,7 @@ This week we replicate a juicy new experimental paper published on the Journal o
 A good replication is an active and extended replication: do you see any strange modification of the code? What happens if you change an assumption? Good luck!
 
 
+Import the data
 ```{r}
 # check working directory
 getwd()
@@ -207,8 +208,11 @@ ap_data <- import(file = here::here("Problem Set 2", "01_Data", "Aff. Pol. Exp. 
 View(ap_data)
 summary(ap_data)
 names(ap_data)
+```
 
 
+Let's see if this works...
+```{r}
 # document -> "Computing Figure 1" -> let's see if this works....
 # load the data
 covid <- read.table(file = here::here("Problem Set 2", "01_Data", "expresults from Stata to generate Figure 1.txt"), header = TRUE)
