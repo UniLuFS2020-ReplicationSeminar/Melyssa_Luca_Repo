@@ -2,8 +2,8 @@
 ---
 title: "Problem Set 2"
 author: 
-- name: Author One
-- name: Author Two
+- name: Melyssa
+- name: Luca
 - name: Author Three
 date: "24 March 2021"
 output:
