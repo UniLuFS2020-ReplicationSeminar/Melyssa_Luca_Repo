@@ -43,7 +43,25 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 ##Exercise 3:
 
 #3.1
+#first linear model:
 data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
 fit <- lm(bwght ~ cigs, data = data)
 summary(fit)
+#findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces
+#this is not this an estimate for the causal effect of smoking because endogeneity issues can still occur because of omitted variables bias could generate biased coefficients
 
+#potential omitted variables (second model):
+fit2 <- lm(bwght ~ cigs + motheduc + cigprice, data = data)
+summary(fit2)
+#findings: the estimate is changing. The previous causal effect is less strong. The error term also diminishes.
+
+#exercise 3.2
+
+#instrumental variable: mother years of education
+#satisfy the first requirement: Z has a causal effect on the endogenous treatment D (see model fit4)
+#CRITIC: Z is not random
+#satisfy requirement 3: Z affects Y only through D: the mother years  of education cannot directly affect the weight of the baby
+fit4 <- lm(cigs ~ motheduc, data = data)
+
+#exercise 3.3
+model_first_stage <- lm(cigs ~ motheduc, data = data)
