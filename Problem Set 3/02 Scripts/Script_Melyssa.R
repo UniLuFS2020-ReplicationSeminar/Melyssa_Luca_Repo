@@ -65,3 +65,4 @@ fit4 <- lm(cigs ~ motheduc, data = data)
 
 #exercise 3.3
 model_first_stage <- lm(cigs ~ motheduc, data = data)
+model_iv <- lm(bwght ~ cigs | motheduc, data = data)
