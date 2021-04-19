@@ -24,4 +24,8 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 #The instrumental variable approach is used to modify the problematic endogenous regressor/s being correlated with the error term.
 #CRITIC: the IV approach in this study does not satisfy one of the three requirements: Z is random or "as if" random [a.k.a. independence assumption].
 
-                                                                                                                     
+#Daniel Kim, Christopher F Baum, Michael Ganz, S V Subramanian, and Ichiro Kawachi (2011): The contextual effects of social capital on health: a cross national instrumental variable analysis
+#Instrument variables (z) = Corruption, Higher population densities, Religious fractionalization 
+#Treatment variable (d) = Social trust
+#Outcome variable (y) = Individual self-rated health
+#The instrumental variable approach is used to modify the problematic endogenous regressor/s being correlated with the error term.
