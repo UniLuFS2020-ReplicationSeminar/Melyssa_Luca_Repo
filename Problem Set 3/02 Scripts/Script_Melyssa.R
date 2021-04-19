@@ -29,3 +29,16 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 #Treatment variable (d) = Social trust
 #Outcome variable (y) = Individual self-rated health
 #The instrumental variable approach is used to modify the problematic endogenous regressor/s being correlated with the error term.
+
+##Exercise 2
+#The ideal experiment would be to use an instrumental variable (IV) approach because we cannot run an experiment for ethical reasons in this case.
+
+#Instrumental variable: Anti-Smoking Campaign 
+
+#Three requirements:
+#Z has a causal effect on the endogenous treatment D: Kenneth Warner (1977) found that anti-smoking campaign has a causal effect on cigarette consumption. It could be that anti-smoking campaign have an effect on mothers’ cigarette consumption.
+#Z is random because we can randomly expose one group to the treatment “anti-smoking campaign” and the other group does not get the treatment.
+#Z affects Y only though D: it should be the case because it should not be possible that one “anti-smoking campaign” affects the weight of babies.
+
+
+??bwght
