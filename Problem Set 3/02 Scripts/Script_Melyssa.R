@@ -40,5 +40,8 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 #Z is random because we can randomly expose one group to the treatment “anti-smoking campaign” and the other group does not get the treatment.
 #Z affects Y only though D: it should be the case because it should not be possible that one “anti-smoking campaign” affects the weight of babies.
 
+##Exercise 3:
+
+data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
 
 ??bwght
