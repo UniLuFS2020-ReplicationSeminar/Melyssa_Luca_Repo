@@ -42,6 +42,8 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 ##Exercise 3:
 
+#3.1
 data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
+fit <- lm(bwght ~ cigs, data = data)
+summary(fit)
 
-??bwght
