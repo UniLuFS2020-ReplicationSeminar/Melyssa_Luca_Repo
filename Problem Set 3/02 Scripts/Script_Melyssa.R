@@ -1,11 +1,12 @@
-###Problem Set 3
+### Problem Set 3
 
-##Install packages
-install.packages("wooldridge")
+## Install packages
+# install.packages("wooldridge")
 library(tidyverse)
 library(kableExtra)
 library(wooldridge)
 knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
+
 
 
 # Exercise 1 --------------------------------------------------------------
@@ -61,7 +62,6 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 
 
-
 # Exercise 2 --------------------------------------------------------------
 
 # Pregnant women would be randomly assigned to smoking (-> create treatment and control groups). Afterwards we could compare the 
@@ -81,7 +81,6 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 # 3) Z affects Y only though D: it should be the case because it should not be possible that one “anti-smoking campaign” 
 # affects the weight of babies.
-
 
 
 
