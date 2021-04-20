@@ -159,6 +159,7 @@ summary(model_iv_2SLS)
 
 # the causal effect is the same as in the manual model. But the p-value is even bigger (0.3821) -> not statistically significant!
 # I'm a bit confused now. Does this suggest, that smoking does not have an causal effect on the babies weight?
+# Or is our instrument just to weak for eliminating the selection bias?
 
 
 ### 3.5
@@ -175,11 +176,14 @@ stargazer(fit1, model_iv_alt, model_iv_2SLS,
 # The Colonial Origins of Comparative Development: An Empirical Investigation
 
 # research question: What is the effect of institutions on economic performance (income per capita)?
+# Europeans adopted different colonization strategies (strategies that enforced the rule of law -> lead to investment 
+# vs. extractive states -> resources were diverted)
 
 # source of endogeneity: "Exploiting differences in European mortality rates as an instrument for current institutions (...)" -> current 
 # institutions as source of endogeneity.
 
 # instrumental variable: differences in European mortality rates
+# high mortality rates -> Europeans could not settle -> extractive strategies -> these early institutions have an effect on institutions today
 
 
 # import the data
@@ -193,5 +197,24 @@ df <- import(file = here::here("Problem Set 3", "01 Data", "Colonial Origins of 
 
 # try to replicate the figures with ggplot
 
+# figure 1
+ggplot(df, aes(logmort0, loggdp)) +
+  geom_text(aes(label = longname)) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "FIGURE 1. REDUCED-FORM RELATIONSHIP BETWEEN INCOME AND SETTLER MORTALITY", 
+       x = "Log of Settler Mortality", 
+       y = "Log GDP per Capita, PPP, 1995") 
 
+# => "Colonies where Europeans faced higher mortality rates are today substantially poorer than colonies that were healthy for Europeans."
+
+
+# figure 3
+ggplot(df, aes(logmort0, risk)) +
+  geom_text(aes(label = longname)) + 
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "FIGURE 3. FIRST-STAGE RELATIONSHIP BETWEEN SETTLER MORTALITY AND EXPROPRIATION RISK", 
+       x = "Log of Settler Mortality", 
+       y = "Average Expropriation Risk 1985-95")
+
+# => "This relationship shows that ex-colonies where Europeans faced higher mortality rates have substantially worse institutions today."
 
