@@ -158,6 +158,7 @@ model_iv_2SLS <- ivreg(bwght ~ cigs | cigtax, data = data)
 summary(model_iv_2SLS)
 
 # the causal effect is the same as in the manual model. But the p-value is even bigger (0.3821) -> not statistically significant!
+# I'm a bit confused now. Does this suggest, that smoking does not have an causal effect on the babies weight?
 
 
 ### 3.5
