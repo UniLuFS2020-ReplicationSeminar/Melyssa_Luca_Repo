@@ -7,7 +7,8 @@ library(kableExtra)
 library(wooldridge)
 knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
-## Exercise 1
+
+# Exercise 1 --------------------------------------------------------------
 
 ### Deniz Güvercin (2019): Women in Politics and Child Labor: an Instrumental Variable Approach
 
@@ -25,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 # variable (child labor). Therefore, using an instrumental variable approach enables to overcome any potential biased coefficients 
 # produced by OLS regression (to leverage partially exogenous treatment variation in observational studies).
 
-#CRITIC: the IV approach in this study does not satisfy one of the three requirements: Z is random or "as if" random 
+# CRITIC: the IV approach in this study does not satisfy one of the three requirements: Z is random or "as if" random 
 # [a.k.a. independence assumption].
 
 
@@ -60,7 +61,8 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 
 
-##Exercise 2
+
+# Exercise 2 --------------------------------------------------------------
 
 # Pregnant women would be randomly assigned to smoking (-> create treatment and control groups). Afterwards we could compare the 
 # group means to get the causal effect of smoking during pregnancy on the weight of the babies.
@@ -69,7 +71,7 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 # Instrumental variable: Anti-Smoking Campaign 
 
-#Three requirements:
+# Three requirements:
 # 1) Z has a causal effect on the endogenous treatment D: Kenneth Warner (1977) found that anti-smoking campaign has a 
 # causal effect on cigarette consumption. It could be that anti-smoking campaigns have an effect on mothers’ cigarette consumption.
 
@@ -80,7 +82,10 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 # 3) Z affects Y only though D: it should be the case because it should not be possible that one “anti-smoking campaign” 
 # affects the weight of babies.
 
-##Exercise 3:
+
+
+
+# Exercise 3 --------------------------------------------------------------
 
 #3.1
 #first linear model:
