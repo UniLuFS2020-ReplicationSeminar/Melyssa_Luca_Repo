@@ -181,3 +181,17 @@ stargazer(fit1, model_iv_alt, model_iv_2SLS,
 
 # instrumental variable: differences in European mortality rates
 
+
+# import the data
+df <- import(file = here::here("Problem Set 3", "01 Data", "Colonial Origins of Comparative Development", "Reply-to-Albouy-dataset-for-AER-replication-filing-May-2-2012.dta"))
+
+# variables of interest:
+
+# 1) logmort0 Original = Log Settler Mortality
+# 2) loggdp = Log GDP per capita (PPP) in 1995
+# 3) risk = Exp Risk
+
+# try to replicate the figures with ggplot
+
+
+
