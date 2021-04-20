@@ -169,3 +169,15 @@ stargazer(fit1, model_iv_alt, model_iv_2SLS,
 
 
 
+
+# Exercise 4 --------------------------------------------------------------
+
+# The Colonial Origins of Comparative Development: An Empirical Investigation
+
+# research question: What is the effect of institutions on economic performance (income per capita)?
+
+# source of endogeneity: "Exploiting differences in European mortality rates as an instrument for current institutions (...)" -> current 
+# institutions as source of endogeneity.
+
+# instrumental variable: differences in European mortality rates
+
