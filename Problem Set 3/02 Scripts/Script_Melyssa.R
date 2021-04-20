@@ -93,7 +93,8 @@ data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
 fit1 <- lm(bwght ~ cigs, data = data)
 summary(fit1)
 # findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces. So on average: if the number of 
-# cigarettes smoked by the mother during pregnancy increases by 1, the birth weight decreases by ~0.5 ounces.
+# cigarettes smoked by the mother during pregnancy increases by 1, the birth weight decreases by ~0.5 ounces. The result is statistically
+# significant (p-value = 1.662e-08)
 # This is not an estimate for the causal effect of smoking because endogeneity issues can still occur because of 
 # omitted variables bias could generate biased coefficients (treatment:smoking during pregnancy is not randomly assigned -> selection bias!)
 
@@ -113,7 +114,7 @@ summary(fit2)
 fit3 <- lm(cigs ~ motheduc, data = data)
 summary(fit3)
 
-# alternative approach (because the mother's years of education is not radnomly assinged...)
+### alternative approach (because the mother's years of education is not radnomly assinged...)
 # to find a viable instrument, the 3 requirements should be met.
 # 1) Z has a causal effect on the endogenous treatment D
 # 2) Z is random or "as if" random 
@@ -124,7 +125,7 @@ summary(fit3)
 # is a strong causal effect between Z and D.
 summary(lm(cigs ~ cigtax, data = data))
 summary(lm(cigs ~ cigprice, data = data))
-# the causal effect is not strong (~ 0.022 & ~ 0.006)
+# the assumed causal effect is not strong (~ 0.022 & ~ 0.006)
 # but in my opinion all the other variables are not viable instruments because they violate other requirements...
 # so let's take cigtax as instrument
 
@@ -134,7 +135,7 @@ model_first_stage <- lm(cigs ~ motheduc, data = data)
 model_iv <- lm(bwght ~ cigs | motheduc, data = data)
 
 
-# alternative approach
+### alternative approach
 # first stage
 model_first_stage_alt <- lm(cigs ~ cigtax, data = data)
 # compute D-hat (predict) and add it to data set
@@ -147,8 +148,23 @@ model_iv_alt <- lm(bwght ~ D_hat, data = data)
 summary(model_iv_alt)
 
 # on average: if the number of cigarettes smoked by the mother during pregnancy increases by 1, the birth weight increases by 5.55 ounces.
-# => strong positive causal effect. But this cannot be right...
+# => strong positive causal effect. But take a look at the p-value (0.075) -> not statistically significant
 
 
 ### 3.4
+# => https://www.rdocumentation.org/packages/AER/versions/1.2-9/topics/ivreg
+library(AER)
+model_iv_2SLS <- ivreg(bwght ~ cigs | cigtax, data = data)
+summary(model_iv_2SLS)
+
+# the causal effect is the same as in the manual model. But the p-value is even bigger (0.3821) -> not statistically significant!
+
+
+### 3.5
+library(stargazer)
+stargazer(fit1, model_iv_alt, model_iv_2SLS,
+          type = "html",
+          out = "PS3_table.html")
+
+
 
