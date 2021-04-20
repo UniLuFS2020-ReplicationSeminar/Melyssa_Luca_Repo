@@ -91,8 +91,10 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
 fit <- lm(bwght ~ cigs, data = data)
 summary(fit)
-#findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces
-#this is not this an estimate for the causal effect of smoking because endogeneity issues can still occur because of omitted variables bias could generate biased coefficients
+#findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces. So on average: if the number of 
+# cigarettes smoked by the mother during pregnancy increases by 1, the birth weight decreases by ~0.5 ounces.
+# This is not an estimate for the causal effect of smoking because endogeneity issues can still occur because of 
+# omitted variables bias could generate biased coefficients (treatment:smoking during pregnancy is not randomly assigned -> selection bias!)
 
 #potential omitted variables (second model):
 fit2 <- lm(bwght ~ cigs + motheduc + cigprice, data = data)
