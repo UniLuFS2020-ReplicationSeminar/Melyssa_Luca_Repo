@@ -113,7 +113,7 @@ summary(fit2)
 fit3 <- lm(cigs ~ motheduc, data = data)
 summary(fit3)
 
-# second approach (because the mother's years of education is not radnomly assinged...)
+# alternative approach (because the mother's years of education is not radnomly assinged...)
 # to find a viable instrument, the 3 requirements should be met.
 # 1) Z has a causal effect on the endogenous treatment D
 # 2) Z is random or "as if" random 
@@ -132,3 +132,23 @@ summary(lm(cigs ~ cigprice, data = data))
 ### 3.3
 model_first_stage <- lm(cigs ~ motheduc, data = data)
 model_iv <- lm(bwght ~ cigs | motheduc, data = data)
+
+
+# alternative approach
+# first stage
+model_first_stage_alt <- lm(cigs ~ cigtax, data = data)
+# compute D-hat (predict) and add it to data set
+data <-  data %>%
+  mutate(D_hat = predict(model_first_stage_alt))
+
+
+# second stage
+model_iv_alt <- lm(bwght ~ D_hat, data = data)
+summary(model_iv_alt)
+
+# on average: if the number of cigarettes smoked by the mother during pregnancy increases by 1, the birth weight increases by 5.55 ounces.
+# => strong positive causal effect. But this cannot be right...
+
+
+### 3.4
+
