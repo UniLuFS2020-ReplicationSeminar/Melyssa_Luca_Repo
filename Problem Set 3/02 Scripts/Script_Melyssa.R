@@ -86,12 +86,13 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 # Exercise 3 --------------------------------------------------------------
 
-#3.1
+### 3.1
+
 #first linear model:
 data <- import(file = here::here("Problem Set 3", "01 Data", "BWGHT.DTA"))
-fit <- lm(bwght ~ cigs, data = data)
-summary(fit)
-#findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces. So on average: if the number of 
+fit1 <- lm(bwght ~ cigs, data = data)
+summary(fit1)
+# findings: the number of cigarettes smoked per day has a negative effect on birth weight in ounces. So on average: if the number of 
 # cigarettes smoked by the mother during pregnancy increases by 1, the birth weight decreases by ~0.5 ounces.
 # This is not an estimate for the causal effect of smoking because endogeneity issues can still occur because of 
 # omitted variables bias could generate biased coefficients (treatment:smoking during pregnancy is not randomly assigned -> selection bias!)
@@ -99,16 +100,35 @@ summary(fit)
 #potential omitted variables (second model):
 fit2 <- lm(bwght ~ cigs + motheduc + cigprice, data = data)
 summary(fit2)
-#findings: the estimate is changing. The previous causal effect is less strong. The error term also diminishes.
+# findings: the estimate is changing slightly. The "causal" effect is less strong. 
 
-#exercise 3.2
+
+
+### 3.2
 
 #instrumental variable: mother years of education
 #satisfy the first requirement: Z has a causal effect on the endogenous treatment D (see model fit4)
 #CRITIC: Z is not random
 #satisfy requirement 3: Z affects Y only through D: the mother years  of education cannot directly affect the weight of the baby
-fit4 <- lm(cigs ~ motheduc, data = data)
+fit3 <- lm(cigs ~ motheduc, data = data)
+summary(fit3)
 
-#exercise 3.3
+# second approach (because the mother's years of education is not radnomly assinged...)
+# to find a viable instrument, the 3 requirements should be met.
+# 1) Z has a causal effect on the endogenous treatment D
+# 2) Z is random or "as if" random 
+# 3) Z affects Y only through D
+
+# which variables in the data set met these 3 requirements?
+# => cigtax, cigprice -> both random or as if random and affect the babies weight only through D. Now we need to see if there is
+# is a strong causal effect between Z and D.
+summary(lm(cigs ~ cigtax, data = data))
+summary(lm(cigs ~ cigprice, data = data))
+# the causal effect is not strong (~ 0.022 & ~ 0.006)
+# but in my opinion all the other variables are not viable instruments because they violate other requirements...
+# so let's take cigtax as instrument
+
+
+### 3.3
 model_first_stage <- lm(cigs ~ motheduc, data = data)
 model_iv <- lm(bwght ~ cigs | motheduc, data = data)
