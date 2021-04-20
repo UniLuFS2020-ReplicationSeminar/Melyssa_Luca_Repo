@@ -96,7 +96,7 @@ summary(fit1)
 # cigarettes smoked by the mother during pregnancy increases by 1, the birth weight decreases by ~0.5 ounces. The result is statistically
 # significant (p-value = 1.662e-08)
 # This is not an estimate for the causal effect of smoking because endogeneity issues can still occur because of 
-# omitted variables bias could generate biased coefficients (treatment:smoking during pregnancy is not randomly assigned -> selection bias!)
+# omitted variables bias could generate biased coefficients (treatment: smoking during pregnancy is not randomly assigned -> selection bias!)
 
 #potential omitted variables (second model):
 fit2 <- lm(bwght ~ cigs + motheduc + cigprice, data = data)
@@ -159,7 +159,7 @@ summary(model_iv_2SLS)
 
 # the causal effect is the same as in the manual model. But the p-value is even bigger (0.3821) -> not statistically significant!
 # I'm a bit confused now. Does this suggest, that smoking does not have an causal effect on the babies weight?
-# Or is our instrument just to weak for eliminating the selection bias?
+# Or is our instrument just to weak for eliminating the selection bias? And cigtax is no good choice as an instrument?
 
 
 ### 3.5
