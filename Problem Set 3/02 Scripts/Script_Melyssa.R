@@ -71,10 +71,11 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 #Three requirements:
 # 1) Z has a causal effect on the endogenous treatment D: Kenneth Warner (1977) found that anti-smoking campaign has a 
-# causal effect on cigarette consumption. It could be that anti-smoking campaign have an effect on mothers’ cigarette consumption.
+# causal effect on cigarette consumption. It could be that anti-smoking campaigns have an effect on mothers’ cigarette consumption.
 
 # 2) Z is random because we can randomly expose one group to the treatment “anti-smoking campaign” and the other group 
-# does not get the treatment.
+# does not get the treatment. The question is however, how can we ensure that only one group is exposed to advertising 
+# over a longer period of time...
 
 # 3) Z affects Y only though D: it should be the case because it should not be possible that one “anti-smoking campaign” 
 # affects the weight of babies.
