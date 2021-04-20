@@ -61,8 +61,11 @@ knitr::opts_chunk$set(echo = TRUE, message=FALSE, warning = FALSE)
 
 
 ##Exercise 2
-# The ideal experiment would be to use an instrumental variable (IV) approach because we cannot run an experiment for ethical 
-# reasons in this case.
+
+# Pregnant women would be randomly assigned to smoking (-> create treatment and control groups). Afterwards we could compare the 
+# group means to get the causal effect of smoking during pregnancy on the weight of the babies.
+# However we could not run such an experiment for ethical reasons in this case! But we could use the instrumental varaible(s) approach
+# instead.
 
 # Instrumental variable: Anti-Smoking Campaign 
 
