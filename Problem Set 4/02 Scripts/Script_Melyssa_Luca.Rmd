@@ -1,5 +1,5 @@
 ---
-title: "Problem_Set_4_Melyssa_Luca"
+title: "Problem Set 4 Melyssa & Luca"
 author: "Luca"
 date: "04/05/2021"
 output: html_document
@@ -87,38 +87,30 @@ Install packages
 Load packages
 
 ```{r warning=FALSE, message=FALSE}
-library(rio)
-library(foreign)
-library(car)
-library(plyr)
-library(plm)
-library(lme4)
-library(lmtest)
-library(stargazer)
-library(xtable)
-library(psych)
-library(grDevices)
-library(plyr)
-library(reshape2)
-library(pBrackets)
-library(MatchIt)
-library(sandwich)
-```
-
-Set up WD
-
-```{r warning=FALSE, message=FALSE}
-# rm(list=ls())
-# getwd()
-# setwd("C:/Users/Melyssa Pina/Desktop/Melyssa_Luca_Repo")
+require(rio)
+require(foreign)
+require(car)
+require(plyr)
+require(plm)
+require(lme4)
+require(lmtest)
+require(stargazer)
+require(xtable)
+require(psych)
+require(grDevices)
+require(plyr)
+require(reshape2)
+require(pBrackets)
+require(MatchIt)
+require(sandwich)
 ```
 
 Import data set
 
 ```{r warning=FALSE, message=FALSE}
-paneldata_long <- read_dta("Problem Set 4/01 Data/paneldata_long.dta")
-paneldata_wide <- read_dta("Problem Set 4/01 Data/paneldata_wide.dta")
-partypositions <- read_sav("Problem Set 4/01 Data/partypositions.sav")
+paneldata_long <- read.dta("Problem Set 4/01 Data/paneldata_long.dta")
+paneldata_wide <- read.dta("Problem Set 4/01 Data/paneldata_wide.dta")
+partypositions <- rio::import("Problem Set 4/01 Data/partypositions.sav")
 
 dat.balance <- paneldata_long
 paneldat <- paneldata_wide
@@ -923,13 +915,13 @@ dev.off()
 Walter (20202) employs "a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties" (ibid).
 
 [Hypotheses:\
-]{.ul}Walter (2020) assumes that the dominant socialist threat approach (STA) is not accurate. The STA "maintains that a fragmented block of non-socialist parties failed to join forces against the emerging left and thus adopted PR [proportional representation]" (ibid). \
+]{.ul}Walter (2020) assumes that the dominant socialist threat approach (STA) is not accurate. The STA "maintains that a fragmented block of non-socialist parties failed to join forces against the emerging left and thus adopted PR [proportional representation]" (ibid).\
 Walter (2020) is of the opinion that the established parties are/were able to coordinate within the institutional setting of a majoritarian electoral system.
 
 [Data & methods:\
 ]{.ul}The author uses data fo Imperial Germany (1890 - 1912). He focuses on the strategic behavior of non-socialist parties in all the runoffs between 1890 and 1912. Of interest is the reaction of the increasing strength of the SPD.\
-Walter (2020) notes that the "majority runoff system mimics a natural experiment by comparing strategic voter and party behavior between the first and second round. Because of the short time frame between the elections structural influences are essentially held constant. \
-To solve the problem of nonrandom assignment of the treatment he uses a regression discontinuity design. In this way the author is able to "estimate the causal effect of socialist entry on alliance formation of non-socialist parties" (ibid: 3). \
+Walter (2020) notes that the "majority runoff system mimics a natural experiment by comparing strategic voter and party behavior between the first and second round. Because of the short time frame between the elections structural influences are essentially held constant.\
+To solve the problem of nonrandom assignment of the treatment he uses a regression discontinuity design. In this way the author is able to "estimate the causal effect of socialist entry on alliance formation of non-socialist parties" (ibid: 3).\
 As running variable he takes the differences in vote shares of the first-round socialist candidate and the second-placed non-socialist candidate. The running variable \> 0 if an socialist candidate entered the runoffs. The running variable \< 0 if two non-socialist candidates compete in the runoffs.
 
 [Expected results:\
