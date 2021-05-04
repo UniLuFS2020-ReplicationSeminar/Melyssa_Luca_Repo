@@ -3,6 +3,8 @@ title: "Problem Set 4 Melyssa & Luca"
 author: "Luca"
 date: "04/05/2021"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Melyssa - replication text
@@ -927,3 +929,87 @@ As running variable he takes the differences in vote shares of the first-round s
 [Expected results:\
 ]{.ul}"The findings suggest that established parties were able to mitigate coordination problems within the institutional setting of majoritarian electoral systems" (ibid: 1).[\
 ]{.ul}
+
+
+## Replication
+
+```{r warning=FALSE, message=FALSE}
+### Install rdrobust package version 0.99.1 to replicate the results (package "devtools" required)
+
+# devtools::install_version("rdrobust", version = "0.99.1", repos = "http://cran.us.r-project.org")
+
+### Load packages
+
+library(xtable)
+library(rdrobust)
+library(rdlocrand)
+library(rddensity)
+library(ggplot2)
+library(cowplot)
+library(dplyr)
+library(texreg)
+```
+
+load the data
+```{r warning=FALSE,message=FALSE}
+runoff <- read.csv("Problem Set 4/01 Data/Walter_2020/data.csv")
+```
+
+
+## Manipulation/sorting around the threshold
+```{r warning=FALSE, message=FALSE}
+# Figure A1
+
+rdd <- rddensity(runoff$socmarg)
+
+# png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/selfselect.png")
+rdplotdensity(rdd, runoff$socmarg, xlabel = "Socialist/Second Non-Socialist Vote Share Difference", ylabel = "Density")
+dev.off()
+
+
+### RDPlots
+
+# Figure A2
+
+# png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot3.png")
+rdplot(y = runoff$diffvotensoc, x = runoff$socmarg, p = 3, binselect = "qs", scale = 25, 
+       x.label = "Socialist/Second Non-Socialist Vote Share Difference",
+       y.label = "Established Party Support")
+dev.off()
+
+# png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot1.png")
+rdplot(y = runoff$difcro, x = runoff$socmarg, p = 3, binselect = "es", scale = 20, 
+       x.label = "Socialist/Second Non-Socialist Vote Share Difference",
+       y.label = "Liberal/Conservative Alliance Probability")
+dev.off()
+
+# png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot2.png")
+rdplot(y = runoff$rightmar2, x = runoff$socmarg, p = 3, binselect = "es", scale = 20, 
+       x.label = "Socialist/Second Non-Socialist Vote Share Difference",
+       y.label = "Alliance Probability Among Strongest Non-Socialists")
+dev.off()
+```
+
+
+## Main analysis
+```{r warning=FALSE, message=FALSE}
+## Loop for different bandwidths
+
+# Liberal-conservative alliances (Figure 1a)
+
+# resu <- list()
+# 
+# for (i in 5:30){
+#   
+#   libcon <- rdrobust(y = runoff$difcro2, x = runoff$socmarg, 
+#                      covs = cbind(runoff$lcomp,runoff$Year3, runoff$id, runoff$marg,runoff$lnonsocsup,runoff$clea,runoff$votensoc),
+#                      all = T, cluster = runoff$Electoral_District_Number, h = i/100)
+#   
+#   resu[[i]] <- c(libcon[[3]][[1]],libcon[[8]][[3]],libcon[[8]][[6]],i/100, sum(libcon[[22]]))
+#   
+# }
+```
+
+From this point on I'm not able to replicate the paper further
+Error in crossprod(x, y) :
+requires numeric/complex matrix/vector arguments
