@@ -114,7 +114,7 @@ summary(fit2)
 fit3 <- lm(cigs ~ motheduc, data = data)
 summary(fit3)
 
-### alternative approach (because the mother's years of education is not radnomly assinged...)
+### alternative approach (because the mother's years of education is not randomly assigned...)
 # to find a viable instrument, the 3 requirements should be met.
 # 1) Z has a causal effect on the endogenous treatment D
 # 2) Z is random or "as if" random 
@@ -159,7 +159,7 @@ summary(model_iv_2SLS)
 
 # the causal effect is the same as in the manual model. But the p-value is even bigger (0.3821) -> not statistically significant!
 # I'm a bit confused now. Does this suggest, that smoking does not have an causal effect on the babies weight?
-# Or is our instrument just to weak for eliminating the selection bias? And cigtax is no good choice as an instrument?
+# Or is our instrument just too weak for eliminating the selection bias? And cigtax is no good choice as an instrument?
 
 
 ### 3.5
