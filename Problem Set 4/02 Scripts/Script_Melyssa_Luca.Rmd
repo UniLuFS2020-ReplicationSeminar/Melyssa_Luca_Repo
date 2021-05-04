@@ -18,10 +18,10 @@ output: html_document
 [Research question & key references:]{.ul}\
 How powerful are political parties in shaping citizen's opinions? (i.e., How citizens react when their party changes its position on a major issue in the real world)
 
-[Hypotheses and corresponding diagram:]{.ul} \
+[Hypotheses and corresponding diagram:]{.ul}\
 Citizen's policy opinions change when their party change its policy position: They assume that changes in opinions among treated and nontreated respondents would have been the same, had there not been a dramatic change in party positions.
 
-[Data & methods]{.ul} \
+[Data & methods]{.ul}\
 Quasi-experimental panel study of how citizens responded when their political party suddenly reversed its position on two major and salient welfare issues in Denmark.
 
 Five-wave panel survey in the aftermath of the great recession in Denmark (2010-11) collected around the two following events (welfare policies):
@@ -52,13 +52,13 @@ Nontreated group: respondents who identify with a party that did not change its 
 
 They use repeated observations of the same citizens and not repeated cross-section with different citizens =\> this allows to study individual opinion change.
 
-[Expected results]{.ul} \
+[Expected results]{.ul}\
 They show that citizens' policy opinions changed immediately and substantially when their party switched its policy position, even when the new position went against citizens' previously held opinion.
 
-[Contribution to political thought]{.ul} \
+[Contribution to political thought]{.ul}\
 These findings advance the current experimental literature on partisan elite influence.
 
-[References]{.ul} \
+[References]{.ul}\
 Slothuus, R., & Bisgaard, M. (2020). How Political Parties Shape Public Opinion in the Real World. American Journal of Political Science.
 
 ### Replication
@@ -186,8 +186,8 @@ dim(centerLeft)
 dim(centerRight)
 ```
 
-
 ## REPRODUCING FIGURE 1
+
 ```{r warning=FALSE, message=FALSE}
 pdf("benefitsCue.pdf",width=6,height=4)
 
@@ -217,8 +217,8 @@ rug(dens)
 dev.off()
 ```
 
-
 ### PARTY POSITIONS ON OTHER ISSUE: ABOLISHING EARLY RETIREMENT
+
 ```{r warning=FALSE, message=FALSE}
 #Position of PM party (liberals)
 treatment <- data.frame("tid"=retiredata$tid,"pos"=retiredata$posVny,"party"="V")
@@ -281,7 +281,6 @@ rug(dens)
 dev.off()
 ```
 
-
 ## REPRODUCING FIGURE 2
 
 ```{r warning=FALSE, message=FALSE}
@@ -318,8 +317,8 @@ segments(as.Date("2010-02-27"),0.55,as.Date("2010-03-15"),.75)
 dev.off()
 ```
 
-
 ### Response rates reported in section "Panel Survey Data and Measures"
+
 ```{r warning=FALSE, message=FALSE}
 #the calculated response rate (55%) reported in text was obtained from the polling Company, Epinion.
 
@@ -330,8 +329,8 @@ prop.table(table(paneldat$recontact))[1]
 prop.table(table(paneldat$completion))[2]
 ```
 
-
 ### Descriptives on measures reported in Data and Design section
+
 ```{r warning=FALSE, message=FALSE}
 #how many partisans identify with a party that changes position?
 table(dat$partyAll[dat$completion==1]%in%c("V"))/5	#ID with liberals
@@ -350,8 +349,8 @@ sd(dat$retire_cutClean,na.rm=T)
 table(dat$retire_cut)[6]/sum(table(dat$retire_cut))
 ```
 
-
 ## REPRODUCING FIGURE 3
+
 ```{r warning=FALSE, message=FALSE}
 #balancing panel
 dat.balance<-dat
@@ -399,9 +398,8 @@ outm.se<-aggregate(benefitClean~partygroup_matched*time,data=dat.balance,SE)
 
 ```
 
-
-
 ## PLOTTING
+
 ```{r warning=FALSE, message=FALSE}
 #sets correct spacing between waves
 x<-c("2010-02-22","2010-04-05","2010-06-15","2011-01-11","2011-06-25") 
@@ -447,8 +445,8 @@ legend('bottomright',pch=c(21,24,21),pt.bg=c("black",c1,c1),col=c("black",c1,c1)
 dev.off()
 ```
 
-
 ### Change among DPP and Liberals
+
 Note: Exact numbers are not referenced in text, but the analysis is referred to
 
 ```{r warning=FALSE, message=FALSE}
@@ -486,8 +484,8 @@ sum(coef(pfit1))	#level after change in policy position
 coeftest(pfit1, vcov=vcovHC(pfit1,cluster="group"))[2,] #change
 ```
 
-
 ## Reproducing results in Table 1
+
 DiD models
 
 ```{r warning=FALSE, message=FALSE}
@@ -531,7 +529,6 @@ stargazer(rbind(tab,obs))
 pfit1_out
 pfit3_out
 ```
-
 
 ## Reproducing Figure 4
 
@@ -578,7 +575,6 @@ out.se<-aggregate(retire_cutClean~partygroup*time,data=dat.balance,SE)
 outm<-aggregate(retire_cutClean~partygroup_matched*time,data=dat.balance,mean)
 outm.se<-aggregate(retire_cutClean~partygroup_matched*time,data=dat.balance,SE)
 ```
-
 
 ## PLOTTING
 
@@ -648,8 +644,8 @@ pfit1<-plm(retire_cutClean~partygroup*time,data=dat.balance[dat.balance$time%in%
 coeftest(pfit1,vcov=vcovHC(pfit1,cluster="group"))[4,]
 ```
 
-
 ## Reporducing table 2
+
 ```{r warning=FALSE, message=FALSE}
 pfit1<-plm(retire_cutClean~partygroup*time,data=dat.balance[dat.balance$time%in%c(3,4),],model="pooling",index=c("id","time"))
 pfit1_out<-coeftest(pfit1,vcov=vcovHC(pfit1,cluster="group"))["partygroup1:time4",]
@@ -689,7 +685,6 @@ stargazer(rbind(tab,obs)) #note: appearance of table has been edited manually
 pfit1_out
 ```
 
-
 ### PARTY CUE EFFECTS CONDITIONAL ON PRIOR POLICY SUPPORT
 
 ```{r warning=FALSE, message=FALSE}
@@ -715,8 +710,8 @@ sum(tab1) 	# total
 sum(tab1[4:5])/sum(tab1) # percentage
 ```
 
-
 ## Reproducing Figure 5
+
 ```{r message=FALSE, warning=FALSE}
 dat.balance<-dat[!is.na(dat$partyAll),]
 dim(dat.balance)
@@ -764,7 +759,6 @@ did_se<-c(sqrt(vmat[2,2]),sqrt(vmat[2,2]+vmat[7,7]+2*vmat[2,7]),
 #means for plotting (levels etc)
 benefit<-aggregate(benefitClean~partygroup_matched*time*factor(benefitW2),data=dat.balance[dat.balance$time%in%2:3,],mean)
 ```
-
 
 ### Effect among voters who supported cutbacks (reported in text)
 
@@ -833,14 +827,14 @@ did_se2<-c(sqrt(vmat2[2,2]),sqrt(vmat2[2,2]+vmat2[7,7]+2*vmat2[2,7]),
 retire<-aggregate(retire_cutClean~partygroup_matched*time*factor(retireW3),data=dat.balance[dat.balance$time%in%3:4,],mean)
 ```
 
-
 ### Effect among voters who supported cutbacks (reported in text)
+
 ```{r message=FALSE, warning=FALSE}
 coeftest(fit2,vcovHC(fit2,cluster="group"))[2,]
 ```
 
-
 ### Effect among voters who opposed cutbacks (reported in text)
+
 ```{r message=FALSE, warning=FALSE}
 dat.balance$retireW3f<-as.factor(dat.balance$retireW3)
 dat.balance$retireW3f<-relevel(dat.balance$retireW3f,ref='5')
@@ -848,8 +842,8 @@ fit<-plm(retire_cutClean~partygroup_matched*time*retireW3f,data=dat.balance[dat.
 coeftest(fit,vcovHC(fit,cluster="group"))[2,]
 ```
 
-
 ## PLOTTING
+
 ```{r message=FALSE, warning=FALSE}
 m<-benefit[benefit$partygroup_matched==1,4]
 c<-benefit[benefit$partygroup_matched==0,4]
@@ -921,3 +915,23 @@ mtext(4,las=3,text="Early Retirement",line=0.2,cex=0.8,adj=.5)
 dev.off()
 ```
 
+# Replication - Walter (2020). "Socialist Threat? Radical Party Entry, Electoral Alliances, and the Introduction of Proportional Representation", APSR.
+
+[Research question & key references:\
+]{.ul}General question: "Why do parties opt for proportional representation?" (Walter 2020: 1)[\
+]{.ul}Research question: "What is the effect of socialist parties entry on the electoral competition and the coordination among the established parties?"\
+Walter (20202) employs "a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties" (ibid).
+
+[Hypotheses:\
+]{.ul}Walter (2020) assumes that the dominant socialist threat approach (STA) is not accurate. The STA "maintains that a fragmented block of non-socialist parties failed to join forces against the emerging left and thus adopted PR [proportional representation]" (ibid). \
+Walter (2020) is of the opinion that the established parties are/were able to coordinate within the institutional setting of a majoritarian electoral system.
+
+[Data & methods:\
+]{.ul}The author uses data fo Imperial Germany (1890 - 1912). He focuses on the strategic behavior of non-socialist parties in all the runoffs between 1890 and 1912. Of interest is the reaction of the increasing strength of the SPD.\
+Walter (2020) notes that the "majority runoff system mimics a natural experiment by comparing strategic voter and party behavior between the first and second round. Because of the short time frame between the elections structural influences are essentially held constant. \
+To solve the problem of nonrandom assignment of the treatment he uses a regression discontinuity design. In this way the author is able to "estimate the causal effect of socialist entry on alliance formation of non-socialist parties" (ibid: 3). \
+As running variable he takes the differences in vote shares of the first-round socialist candidate and the second-placed non-socialist candidate. The running variable \> 0 if an socialist candidate entered the runoffs. The running variable \< 0 if two non-socialist candidates compete in the runoffs.
+
+[Expected results:\
+]{.ul}"The findings suggest that established parties were able to mitigate coordination problems within the institutional setting of majoritarian electoral systems" (ibid: 1).[\
+]{.ul}
