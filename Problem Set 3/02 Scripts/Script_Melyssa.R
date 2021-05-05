@@ -139,9 +139,9 @@ model_iv <- lm(bwght ~ cigs | motheduc, data = data)
 # first stage
 model_first_stage_alt <- lm(cigs ~ cigtax, data = data)
 # compute D-hat (predict) and add it to data set
-data <-  data %>%
-  mutate(D_hat = predict(model_first_stage_alt))
-
+data <- data %>% mutate(D_hat = predict(model_first_stage_alt))
+install.packages("AER")
+library(AER)
 
 # second stage
 model_iv_alt <- lm(bwght ~ D_hat, data = data)
