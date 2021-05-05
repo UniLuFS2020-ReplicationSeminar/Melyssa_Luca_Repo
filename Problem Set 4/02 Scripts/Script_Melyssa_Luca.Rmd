@@ -913,7 +913,7 @@ dev.off()
 
 [Research question & key references:\
 ]{.ul}General question: "Why do parties opt for proportional representation?" (Walter 2020: 1)[\
-]{.ul}Research question: "What is the effect of socialist parties entry on the electoral competition and the coordination among the established parties?"\
+]{.ul}Research question: What is the effect of socialist parties entry on the electoral competition and the coordination among the established parties?\
 Walter (20202) employs "a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties" (ibid).
 
 [Hypotheses:\
@@ -921,15 +921,14 @@ Walter (20202) employs "a regression discontinuity design to estimate the casual
 Walter (2020) is of the opinion that the established parties are/were able to coordinate within the institutional setting of a majoritarian electoral system.
 
 [Data & methods:\
-]{.ul}The author uses data fo Imperial Germany (1890 - 1912). He focuses on the strategic behavior of non-socialist parties in all the runoffs between 1890 and 1912. Of interest is the reaction of the increasing strength of the SPD.\
-Walter (2020) notes that the "majority runoff system mimics a natural experiment by comparing strategic voter and party behavior between the first and second round. Because of the short time frame between the elections structural influences are essentially held constant.\
+]{.ul}The author uses data for Imperial Germany (1890 - 1912). He focuses on the strategic behavior of non-socialist parties in all the runoffs between 1890 and 1912. Of interest is the reaction of the increasing strength of the SPD (SPD as the "socialist threat").\
+Walter (2020) notes that the "majority runoff system mimics a natural experiment by comparing strategic voter and party behavior between the first and second round. Because of the short time frame between the elections structural influences are essentially held constant" (ibid: 3).\
 To solve the problem of nonrandom assignment of the treatment he uses a regression discontinuity design. In this way the author is able to "estimate the causal effect of socialist entry on alliance formation of non-socialist parties" (ibid: 3).\
 As running variable he takes the differences in vote shares of the first-round socialist candidate and the second-placed non-socialist candidate. The running variable \> 0 if an socialist candidate entered the runoffs. The running variable \< 0 if two non-socialist candidates compete in the runoffs.
 
 [Expected results:\
 ]{.ul}"The findings suggest that established parties were able to mitigate coordination problems within the institutional setting of majoritarian electoral systems" (ibid: 1).[\
 ]{.ul}
-
 
 ## Replication
 
@@ -951,12 +950,13 @@ library(texreg)
 ```
 
 load the data
+
 ```{r warning=FALSE,message=FALSE}
 runoff <- read.csv("Problem Set 4/01 Data/Walter_2020/data.csv")
 ```
 
-
 ## Manipulation/sorting around the threshold
+
 ```{r warning=FALSE, message=FALSE}
 # Figure A1
 
@@ -990,8 +990,8 @@ rdplot(y = runoff$rightmar2, x = runoff$socmarg, p = 3, binselect = "es", scale 
 dev.off()
 ```
 
-
 ## Main analysis
+
 ```{r warning=FALSE, message=FALSE}
 ## Loop for different bandwidths
 
@@ -1010,6 +1010,4 @@ dev.off()
 # }
 ```
 
-From this point on I'm not able to replicate the paper further
-Error in crossprod(x, y) :
-requires numeric/complex matrix/vector arguments
+From this point on I'm not able to replicate the paper further Error in crossprod(x, y) : requires numeric/complex matrix/vector arguments
