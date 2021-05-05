@@ -110,9 +110,9 @@ require(sandwich)
 Import data set
 
 ```{r warning=FALSE, message=FALSE}
-paneldata_long <- read.dta("Problem Set 4/01 Data/paneldata_long.dta")
-paneldata_wide <- read.dta("Problem Set 4/01 Data/paneldata_wide.dta")
-partypositions <- rio::import("Problem Set 4/01 Data/partypositions.sav")
+paneldata_long <- read.dta("Problem Set 4/01 Data/Slothuus&Birgaard (2020)/paneldata_long.dta")
+paneldata_wide <- read.dta("Problem Set 4/01 Data/Slothuus&Birgaard (2020)/paneldata_wide.dta")
+partypositions <- rio::import("Problem Set 4/01 Data/Slothuus&Birgaard (2020)/partypositions.sav")
 
 dat.balance <- paneldata_long
 paneldat <- paneldata_wide
@@ -965,8 +965,10 @@ rdd <- rddensity(runoff$socmarg)
 # png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/selfselect.png")
 rdplotdensity(rdd, runoff$socmarg, xlabel = "Socialist/Second Non-Socialist Vote Share Difference", ylabel = "Density")
 dev.off()
+```
 
 
+```{r warning=FALSE, message=FALSE}
 ### RDPlots
 
 # Figure A2
@@ -976,13 +978,19 @@ rdplot(y = runoff$diffvotensoc, x = runoff$socmarg, p = 3, binselect = "qs", sca
        x.label = "Socialist/Second Non-Socialist Vote Share Difference",
        y.label = "Established Party Support")
 dev.off()
+```
 
+
+```{r warning=FALSE, message=FALSE}
 # png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot1.png")
 rdplot(y = runoff$difcro, x = runoff$socmarg, p = 3, binselect = "es", scale = 20, 
        x.label = "Socialist/Second Non-Socialist Vote Share Difference",
        y.label = "Liberal/Conservative Alliance Probability")
 dev.off()
+```
 
+
+```{r warning=FALSE, message=FALSE}
 # png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot2.png")
 rdplot(y = runoff$rightmar2, x = runoff$socmarg, p = 3, binselect = "es", scale = 20, 
        x.label = "Socialist/Second Non-Socialist Vote Share Difference",
@@ -1000,13 +1008,13 @@ dev.off()
 # resu <- list()
 # 
 # for (i in 5:30){
-#   
-#   libcon <- rdrobust(y = runoff$difcro2, x = runoff$socmarg, 
+# 
+#   libcon <- rdrobust(y = runoff$difcro2, x = runoff$socmarg,
 #                      covs = cbind(runoff$lcomp,runoff$Year3, runoff$id, runoff$marg,runoff$lnonsocsup,runoff$clea,runoff$votensoc),
 #                      all = T, cluster = runoff$Electoral_District_Number, h = i/100)
-#   
+# 
 #   resu[[i]] <- c(libcon[[3]][[1]],libcon[[8]][[3]],libcon[[8]][[6]],i/100, sum(libcon[[22]]))
-#   
+# 
 # }
 ```
 
