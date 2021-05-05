@@ -697,7 +697,7 @@ rownames(obs)&lt;-c(&quot;Units&quot;,&quot;Observations&quot;)
 stargazer(rbind(tab,obs))</code></pre>
 <pre><code>## 
 ## % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-## % Date and time: Wed, May 05, 2021 - 15:05:15
+## % Date and time: Wed, May 05, 2021 - 15:22:16
 ## \begin{table}[!htbp] \centering 
 ##   \caption{} 
 ##   \label{} 
@@ -887,7 +887,7 @@ rownames(obs)&lt;-c(&quot;Units&quot;,&quot;Observations&quot;)
 stargazer(rbind(tab,obs)) #note: appearance of table has been edited manually</code></pre>
 <pre><code>## 
 ## % Table created by stargazer v.5.2.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
-## % Date and time: Wed, May 05, 2021 - 15:05:16
+## % Date and time: Wed, May 05, 2021 - 15:22:17
 ## \begin{table}[!htbp] \centering 
 ##   \caption{} 
 ##   \label{} 
@@ -1200,8 +1200,8 @@ dev.off()</code></pre>
 <h1>Replication - Walter (2020). “Socialist Threat? Radical Party Entry, Electoral Alliances, and the Introduction of Proportional Representation”, APSR.</h1>
 <p><u>Research question &amp; key references:<br />
 </u>General question: “Why do parties opt for proportional representation?” (Walter 2020: 1)<u><br />
-</u>Research question: What is the effect of socialist parties entry on the electoral competition and the coordination among the established parties?<br />
-Walter (20202) employs “a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties” (ibid).</p>
+</u>Research question: How does the entry of socialist parties affect electoral competition and coordination among the established parties?<br />
+Walter (2020) employs “a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties” (ibid).</p>
 <p><u>Hypotheses:<br />
 </u>Walter (2020) assumes that the dominant socialist threat approach (STA) is not accurate. The STA “maintains that a fragmented block of non-socialist parties failed to join forces against the emerging left and thus adopted PR [proportional representation]” (ibid).<br />
 Walter (2020) is of the opinion that the established parties are/were able to coordinate within the institutional setting of a majoritarian electoral system.</p>
@@ -1310,13 +1310,13 @@ rdplot(y = runoff$rightmar2, x = runoff$socmarg, p = 3, binselect = &quot;es&quo
 # resu &lt;- list()
 # 
 # for (i in 5:30){
-#   
-#   libcon &lt;- rdrobust(y = runoff$difcro2, x = runoff$socmarg, 
+# 
+#   libcon &lt;- rdrobust(y = runoff$difcro2, x = runoff$socmarg,
 #                      covs = cbind(runoff$lcomp,runoff$Year3, runoff$id, runoff$marg,runoff$lnonsocsup,runoff$clea,runoff$votensoc),
 #                      all = T, cluster = runoff$Electoral_District_Number, h = i/100)
-#   
+# 
 #   resu[[i]] &lt;- c(libcon[[3]][[1]],libcon[[8]][[3]],libcon[[8]][[6]],i/100, sum(libcon[[22]]))
-#   
+# 
 # }</code></pre>
 <p>From this point on I’m not able to replicate the paper further Error in crossprod(x, y) : requires numeric/complex matrix/vector arguments</p>
 </div>

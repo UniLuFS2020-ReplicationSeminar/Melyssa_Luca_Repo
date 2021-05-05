@@ -913,8 +913,8 @@ dev.off()
 
 [Research question & key references:\
 ]{.ul}General question: "Why do parties opt for proportional representation?" (Walter 2020: 1)[\
-]{.ul}Research question: What is the effect of socialist parties entry on the electoral competition and the coordination among the established parties?\
-Walter (20202) employs "a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties" (ibid).
+]{.ul}Research question: How does the entry of socialist parties affect electoral competition and coordination among the established parties?\
+Walter (2020) employs "a regression discontinuity design to estimate the casual effect of socialist entry to the electoral arena on the formation of electoral alliances and the support of established parties" (ibid).
 
 [Hypotheses:\
 ]{.ul}Walter (2020) assumes that the dominant socialist threat approach (STA) is not accurate. The STA "maintains that a fragmented block of non-socialist parties failed to join forces against the emerging left and thus adopted PR [proportional representation]" (ibid).\
@@ -967,7 +967,6 @@ rdplotdensity(rdd, runoff$socmarg, xlabel = "Socialist/Second Non-Socialist Vote
 dev.off()
 ```
 
-
 ```{r warning=FALSE, message=FALSE}
 ### RDPlots
 
@@ -980,7 +979,6 @@ rdplot(y = runoff$diffvotensoc, x = runoff$socmarg, p = 3, binselect = "qs", sca
 dev.off()
 ```
 
-
 ```{r warning=FALSE, message=FALSE}
 # png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot1.png")
 rdplot(y = runoff$difcro, x = runoff$socmarg, p = 3, binselect = "es", scale = 20, 
@@ -988,7 +986,6 @@ rdplot(y = runoff$difcro, x = runoff$socmarg, p = 3, binselect = "es", scale = 2
        y.label = "Liberal/Conservative Alliance Probability")
 dev.off()
 ```
-
 
 ```{r warning=FALSE, message=FALSE}
 # png(filename="C:/Work/Dropbox/Papers/Soc_Threat/Paper/Final/rdplot2.png")
